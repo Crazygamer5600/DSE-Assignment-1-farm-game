@@ -4,7 +4,6 @@ public class Item {
 	int age = 0;
 	int maturationAge;
 	int deathAge;
-	int maturation;
 	int monetaryValue;
 	
 	public void tick(){
@@ -20,8 +19,26 @@ public class Item {
 		return dead;}
 
 	public int getValue(){
-		if (age>maturation){
+		if (age>maturationAge){
 		return monetaryValue;}
+		else {
+			return 0;}}
+	
+	public boolean equals(Item x, Item y){
+	if (x.age==y.age && x.deathAge==y.deathAge && x.maturationAge==y.maturationAge && x.monetaryValue==y.monetaryValue){
+		return true;}
+	else {
+		return false;}
 	}
 
-}
+	@Override
+	public String toString() {
+		return "Item [age=" + age + ", maturationAge=" + maturationAge + ", deathAge=" + deathAge + ", monetaryValue="
+				+ monetaryValue + "]";
+	}
+	
+	
+
+}	
+
+
