@@ -1,16 +1,18 @@
 package students.items;
 
 public class Item {
+	String name = "";
 	int age = 0;
 	int maturationAge;
 	int deathAge;
 	int monetaryValue;
 	
-	public Item(int age, int maturationAge, int deathAge, int monetaryValue) {
+	public Item(int age, int maturationAge, int deathAge, int monetaryValue, String name) {
 		this.age=age;
 		this.maturationAge=maturationAge;
 		this.deathAge=deathAge;
 		this.monetaryValue=monetaryValue;
+		this.name=name;
 	}
 
 	public void tick(){
