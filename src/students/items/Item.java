@@ -6,6 +6,13 @@ public class Item {
 	int deathAge;
 	int monetaryValue;
 	
+	public Item(int age, int maturationAge, int deathAge, int monetaryValue) {
+		this.age=age;
+		this.maturationAge=maturationAge;
+		this.deathAge=deathAge;
+		this.monetaryValue=monetaryValue;
+	}
+
 	public void tick(){
 		age++;}
 
