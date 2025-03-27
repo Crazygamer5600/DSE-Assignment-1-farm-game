@@ -1,11 +1,21 @@
 package students.items;
 
-public class Grain{
-	static int SubclassCount;
-	Food Grain = new Food(0,2,6,2,"g");
+public class Grain extends Food{
+	
+	static int subclassCount;
+	String Symbol="g";
+	
+	public Grain(int age, int maturationAge, int deathAge, int monetaryValue) {
+		super(age, maturationAge, deathAge, monetaryValue);}	
 	
 	public int getGenerationCount(){
-		SubclassCount++;
-		return SubclassCount;}
-	}
+		subclassCount++;
+		return subclassCount;}
+	
+	public String MaturationStr(){
+		if (age>maturationAge){
+			String x = Symbol.toUpperCase();
+			Symbol=x;}
+		return Symbol;}
+}
 

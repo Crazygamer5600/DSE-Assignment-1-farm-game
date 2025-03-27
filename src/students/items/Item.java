@@ -1,24 +1,23 @@
 package students.items;
 
 public class Item {
-	String name = "";
 	int age = 0;
 	int maturationAge;
 	int deathAge;
 	int monetaryValue;
 	
-	public Item(int age, int maturationAge, int deathAge, int monetaryValue, String name) {
-		this.age=age;
-		this.maturationAge=maturationAge;
-		this.deathAge=deathAge;
-		this.monetaryValue=monetaryValue;
-		this.name=name;
+	public Item(int age, int maturationAge, int deathAge, int monetaryValue) {
+		super();
+		this.age = age;
+		this.maturationAge = maturationAge;
+		this.deathAge = deathAge;
+		this.monetaryValue = monetaryValue;
 	}
 
 	public void tick(){
 		age++;}
 
-	public void setAge(int age) {
+	public void setAge(int age){
 		this.age = age;}
 	
 	public boolean died(){
@@ -41,13 +40,10 @@ public class Item {
 	}
 
 	@Override
-	public String toString() {
+	public String toString(){
 		return "Item [age=" + age + ", maturationAge=" + maturationAge + ", deathAge=" + deathAge + ", monetaryValue="
 				+ monetaryValue + "]";
 	}
-	
-	
-
 }	
 
 
