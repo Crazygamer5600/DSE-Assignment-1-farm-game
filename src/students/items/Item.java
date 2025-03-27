@@ -5,14 +5,15 @@ public class Item {
 	int maturationAge;
 	int deathAge;
 	int monetaryValue;
-	
-	public Item(int age, int maturationAge, int deathAge, int monetaryValue) {
+	String Symbol;
+
+	public Item(int age, int maturationAge, int deathAge, int monetaryValue, String symbol) {
 		super();
 		this.age = age;
 		this.maturationAge = maturationAge;
 		this.deathAge = deathAge;
 		this.monetaryValue = monetaryValue;
-	}
+		this.Symbol = symbol;}
 
 	public void tick(){
 		age++;}

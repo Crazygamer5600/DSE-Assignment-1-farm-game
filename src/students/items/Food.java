@@ -1,13 +1,7 @@
 package students.items;
 
 public class Food extends Item {
-	
-	public Food(int age, int maturationAge, int deathAge, int monetaryValue) {
-		super(age, maturationAge, deathAge, monetaryValue);
-			}
-	
-	
-	
-	
-	
+	int seedPrice;
+	public Food(int age, int maturationAge, int deathAge, int monetaryValue, String symbol, int seedPrice) {
+		super(age, maturationAge, deathAge, monetaryValue, symbol);}
 }

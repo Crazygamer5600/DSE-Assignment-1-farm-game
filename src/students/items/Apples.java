@@ -1,13 +1,19 @@
 package students.items;
 
 public class Apples extends Food {
-	
 	static int SubclassCount;
-	String Symbol="a";
+	public Apples(int age, int maturationAge, int deathAge, int monetaryValue, String symbol, int seedPrice) {
+		super(age, maturationAge, deathAge, monetaryValue, symbol, seedPrice);
+		this.age=0;
+		this.maturationAge=3;
+		this.deathAge=5;
+		this.monetaryValue=3;
+		this.Symbol="a";
+		this.seedPrice=2;}
+
 	
-	public Apples(int age, int maturationAge, int deathAge, int monetaryValue) {
-		super(age, maturationAge, deathAge, monetaryValue);}
 	
+
 	public int getGenerationCount(){
 		SubclassCount++;
 		return SubclassCount;}	

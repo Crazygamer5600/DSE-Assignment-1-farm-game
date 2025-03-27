@@ -1,6 +1,15 @@
 package students.items;
 
-public class Weed
-{
-	Item Weed = new Item(0,Integer.MAX_VALUE,Integer.MAX_VALUE,-1,"#");//how do i do infinity here?
+public class Weed extends Item{
+	public Weed(int age, int maturationAge, int deathAge, int monetaryValue, String symbol) {
+		super(age, maturationAge, deathAge, monetaryValue, symbol);
+		this.age=0;
+		this.maturationAge=Integer.MAX_VALUE;
+		this.deathAge=Integer.MAX_VALUE;
+		this.monetaryValue=-1;
+		this.Symbol="#";}
+		
+	
 }
+
+
