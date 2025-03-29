@@ -1,18 +1,18 @@
 package students.items;
 
 public class Item {
-	int age = 0;
+	int age;
 	int maturationAge;
 	int deathAge;
 	int monetaryValue;
-	String Symbol;
+	String symbol;
 
 	public Item(int age, int maturationAge, int deathAge, int monetaryValue, String symbol) {
 		this.age = age;
 		this.maturationAge = maturationAge;
 		this.deathAge = deathAge;
 		this.monetaryValue = monetaryValue;
-		this.Symbol = symbol;
+		this.symbol = symbol;
 	}
 
 	public void tick() {
@@ -26,27 +26,31 @@ public class Item {
 	
 	public boolean died() {
 		boolean dead = false;
-		if(age>deathAge) {
-			dead = true;}
+		if(age > deathAge) {
+			dead = true;
+		}
 		return dead;
 	}
 
-	public int getValue(){
-		if (age>maturationAge){
-		return monetaryValue;}
-		else {
-			return 0;}}
+	public int getValue() {
+		if (age > maturationAge) {
+			return monetaryValue;
+		} else {
+			return 0;
+		}
+	}
 	
 	
 	public String getSymbol() {
-		return Symbol;
+		return symbol;
 	}
 
-	public boolean equals(Item x, Item y){
-	if (x.age==y.age && x.deathAge==y.deathAge && x.maturationAge==y.maturationAge && x.monetaryValue==y.monetaryValue){
-		return true;}
-	else {
-		return false;}
+	public boolean equals(Item x, Item y) {
+		if (x.age == y.age && x.deathAge == y.deathAge && x.maturationAge == y.maturationAge && x.monetaryValue == y.monetaryValue) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override

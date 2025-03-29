@@ -1,12 +1,10 @@
 package students;
 import students.items.Soil;
 import students.items.UntilledSoil;
-
+import students.items.Weed;
 import java.util.Arrays;
 import java.util.Random;
-
 import students.items.Item;
-
 
 public class Field {
 	int height;
@@ -16,7 +14,7 @@ public class Field {
 	public Field(int height, int width) {
 		this.height = height;
 		this.width = width;
-		this.fieldItems= new Item[width][height];
+		this.fieldItems = new Item[width][height];
 	}
 	
 	public void prepField() {
@@ -34,11 +32,39 @@ public class Field {
 				Random ran = new Random();
 				int x = ran.nextInt(5) + 1;
 				if (fieldItems[currentRow][rowElement].getSymbol() == "." && x==1){
-					fieldItems[currentRow][rowElement] = new UntilledSoil();
+					fieldItems[currentRow][rowElement] = new Weed();
 				}
 				System.out.println(fieldItems[currentRow][rowElement]);
 			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		String fieldView=" ";
+		for (int currentRow = 0; currentRow < width; currentRow++) {
+			fieldView += " "+Integer.toString(currentRow+1);
+			if (currentRow == width-1) {
+				fieldView+="\n";
+			}
+		}
+		for (int currentRow = 0; currentRow < height; currentRow++) {
+			if (Integer.toString(currentRow+1).length()==1) {
+				fieldView+=Integer.toString(currentRow+1)+" ";}
+			else{
+				fieldView+=Integer.toString(currentRow+1);}
+			
+			for (int rowElement = 0; rowElement < width; rowElement++) {
+				fieldView+=fieldItems[currentRow][rowElement].getSymbol() + " ";
+			}
+			fieldView+="\n";
+		}
+		return fieldView;
+		
+	}
+	
+	public void till(int xCoord, int yCoord) {
+		fieldItems[xCoord-1][yCoord-1] = new Soil();
 	}
 
 	
