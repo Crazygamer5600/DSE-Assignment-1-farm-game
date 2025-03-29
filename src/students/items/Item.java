@@ -33,6 +33,11 @@ public class Item {
 		else {
 			return 0;}}
 	
+	
+	public String getSymbol() {
+		return Symbol;
+	}
+
 	public boolean equals(Item x, Item y){
 	if (x.age==y.age && x.deathAge==y.deathAge && x.maturationAge==y.maturationAge && x.monetaryValue==y.monetaryValue){
 		return true;}
