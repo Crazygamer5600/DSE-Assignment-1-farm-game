@@ -8,24 +8,28 @@ public class Item {
 	String Symbol;
 
 	public Item(int age, int maturationAge, int deathAge, int monetaryValue, String symbol) {
-		super();
 		this.age = age;
 		this.maturationAge = maturationAge;
 		this.deathAge = deathAge;
 		this.monetaryValue = monetaryValue;
-		this.Symbol = symbol;}
+		this.Symbol = symbol;
+	}
 
-	public void tick(){
-		age++;}
+	public void tick() {
+		age++;
+	}
 
-	public void setAge(int age){
-		this.age = age;}
+	public void setAge(int age) {
+		this.age = age;
+		
+	}
 	
-	public boolean died(){
+	public boolean died() {
 		boolean dead = false;
 		if(age>deathAge) {
 			dead = true;}
-		return dead;}
+		return dead;
+	}
 
 	public int getValue(){
 		if (age>maturationAge){
