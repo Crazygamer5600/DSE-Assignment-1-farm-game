@@ -5,6 +5,7 @@ import students.items.Weed;
 import java.util.Arrays;
 import java.util.Random;
 import students.items.Item;
+import students.items.Apples;
 
 public class Field {
 	int height;
@@ -33,6 +34,9 @@ public class Field {
 				int x = ran.nextInt(5) + 1;
 				if (fieldItems[currentRow][rowElement].getSymbol() == "." && x==1){
 					fieldItems[currentRow][rowElement] = new Weed();
+				}
+				if (fieldItems[currentRow][rowElement].died()==true) {
+					fieldItems[currentRow][rowElement]=new UntilledSoil();
 				}
 				System.out.println(fieldItems[currentRow][rowElement]);
 			}
@@ -67,8 +71,37 @@ public class Field {
 		fieldItems[xCoord-1][yCoord-1] = new Soil();
 	}
 
+	public Item get(int xCoord, int yCoord) {
+		return fieldItems[xCoord-1][yCoord-1];
+	}
 	
+	public void plant(int xCoord, int yCoord, Item plant) {
+		fieldItems[xCoord-1][yCoord-1] = plant;
+	}
 	
+	public int getValue() {
+		int monetaryValue=0;
+		for (int currentRow = 0; currentRow < height; currentRow++) {
+			for (int rowElement = 0; rowElement < width; rowElement++) {
+				monetaryValue += fieldItems[currentRow][rowElement].getValue();
+				}
+			}
+		return monetaryValue;
+	}
+	
+	public int getSummary() {
+		int appleSum = 0;
+		int monetaryValue=0;
+		for (int currentRow = 0; currentRow < height; currentRow++) {
+			for (int rowElement = 0; rowElement < width; rowElement++) {
+				if (fieldItems[currentRow][rowElement].getSymbol()=="a" || fieldItems[currentRow][rowElement].getSymbol()=="A") {
+				appleSum=fieldItems[currentRow][rowElement].getGenerationCount();
+				}
+			}
+		}
+		return appleSum;
+	}
+
 	
 	
 	

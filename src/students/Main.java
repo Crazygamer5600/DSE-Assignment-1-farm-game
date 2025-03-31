@@ -9,7 +9,19 @@ public class Main {
 		r.tick();
 		System.out.println(r.toString());
 		r.till(10, 10);
+		Apples GrannySmith = new Apples();
+		r.plant(1, 1, GrannySmith);
+		r.tick();
+		r.tick();
+		r.tick();
+		r.tick();
+		r.tick();
+		r.tick();
 		System.out.println(r.toString());
+		System.out.println(r.get(1, 1));
+		System.out.println(r.getValue());
+		System.out.println(r.getSummary());
+		
 		
 	
 	}
