@@ -4,6 +4,12 @@ import students.items.Apples;
 public class Main {
 
 	public static void main(String[] args) {
+//		Apples GrannySmith = new Apples();
+//		Apples GrannySmith1 = new Apples();
+//		Apples GrannySmith2 = new Apples();
+//		Apples GrannySmith3 = new Apples();
+//		Apples GrannySmith4 = new Apples();
+//		System.out.println(Apples.getGenerationCount());
 		Field r = new Field(10,10);
 		r.prepField();
 		r.tick();
@@ -21,6 +27,7 @@ public class Main {
 		System.out.println(r.get(1, 1));
 		System.out.println(r.getValue());
 		System.out.println(r.getSummary());
+		
 		
 		
 	

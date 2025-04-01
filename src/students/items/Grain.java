@@ -4,11 +4,13 @@ public class Grain extends Food{
 	static int subclassCount;
 	public Grain() {
 		super(0, 2, 6, 2, "g", 1);
+		subclassCount++;
 	}
 	
-	public int getGenerationCount(){
+	public static int getGenerationCount(){
 		subclassCount++;
-		return subclassCount;}
+		return subclassCount;
+	}
 	
 	public String MaturationStr(){
 		if (age>maturationAge){

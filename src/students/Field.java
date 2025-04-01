@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Random;
 import students.items.Item;
 import students.items.Apples;
+import students.items.Grain;
 
 public class Field {
 	int height;
@@ -89,20 +90,21 @@ public class Field {
 		return monetaryValue;
 	}
 	
-	public int getSummary() {
-		int appleSum = 0;
-		int monetaryValue=0;
-		for (int currentRow = 0; currentRow < height; currentRow++) {
-			for (int rowElement = 0; rowElement < width; rowElement++) {
-				if (fieldItems[currentRow][rowElement].getSymbol()=="a" || fieldItems[currentRow][rowElement].getSymbol()=="A") {
-				appleSum=fieldItems[currentRow][rowElement].getGenerationCount();
-				}
+	public String getSummary() {
+		int appleSum = Apples.getGenerationCount();
+		int grainSum = Grain.getGenerationCount();
+		int soilSum = Soil.getGenerationCount();
+		int untilledSum = UntilledSoil.getGenerationCount();
+		int weedSum = Weed.getGenerationCount();
+		
+		String summary="Apples:"+appleSum+"\n"+"Grain:"+grainSum+"\n"+"Soil:"+soilSum+"\n"+"Untilled:"+untilledSum+"\n"+"Weed:"+weedSum+"\n";
+		
+		return summary;		
 			}
-		}
-		return appleSum;
+		
+		
 	}
 
 	
 	
 	
-}

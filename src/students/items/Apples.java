@@ -1,13 +1,16 @@
 package students.items;
 
 public class Apples extends Food {
-	static int SubclassCount;
+	
+	static int subclassCount;
 	public Apples() {
-		super(0, 3, 5, 3, "a", 2);}
+		super(0, 3, 5, 3, "a", 2);
+		subclassCount++;
+	}
 
-	public int getGenerationCount(){
-		SubclassCount++;
-		return SubclassCount;}	
+	public static int getGenerationCount(){
+		return subclassCount;
+	}	
 		
 	public String MaturationStr(){
 		if (age>maturationAge){
