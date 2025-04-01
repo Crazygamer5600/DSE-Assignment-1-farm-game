@@ -16,7 +16,7 @@ public class Farm {
 		Field beerenburg=new Field(fieldHeight,fieldWidth);
 		beerenburg.prepField();
 		
-		while(;input!="quit";) {
+		while(input!="q") {
 			beerenburg.toString();
 		}
 		
