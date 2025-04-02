@@ -8,7 +8,6 @@ public class Grain extends Food{
 	}
 	
 	public static int getGenerationCount(){
-		subclassCount++;
 		return subclassCount;
 	}
 	
@@ -17,5 +16,13 @@ public class Grain extends Food{
 			String x = symbol.toUpperCase();
 			symbol=x;}
 		return symbol;}
-}
+
+	
+	public void reduceGenerationCount() {
+		subclassCount--;	
+	}
+	
+		
+	}
+
 
