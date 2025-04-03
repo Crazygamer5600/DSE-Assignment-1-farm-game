@@ -11,7 +11,7 @@ public class Apples extends Food {
 		return subclassCount;
 	}
 	
-	public static void reduceGenerationCount(){
+	public void reduceGenerationCount(){
 		subclassCount--;
 	}
 

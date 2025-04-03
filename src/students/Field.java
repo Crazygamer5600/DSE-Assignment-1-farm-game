@@ -13,15 +13,6 @@ public class Field {
 	int width;
 	Item[][] fieldItems;//2d array similar to excel table
 	
-	public void reduceGenerationCount(Item x) {
-		if (x.getSymbol()=="A" || x.getSymbol()=="a") {
-			Apples.reduceGenerationCount();
-		}
-			(x.getSymbol()=="G" || x.getSymbol()=="g") {
-			
-		}
-	}
-	
 	public Field(int height, int width) {
 		this.height = height;
 		this.width = width;
@@ -110,6 +101,8 @@ public class Field {
 		
 		return summary;		
 			}
+		
+		
 	}
 
 	
