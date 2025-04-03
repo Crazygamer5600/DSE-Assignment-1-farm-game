@@ -17,10 +17,6 @@ public class Item {
 		this.symbol = symbol;
 	}
 	
-	public int getGenerations(Item objName ){
-		HashMap<String, Integer> capitalCities = new HashMap<String, Integer>();
-		capitalCities.put(symbol, objName.getGenerations());
-	}
 
 	public void tick() {
 		age++;
