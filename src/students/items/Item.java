@@ -1,5 +1,7 @@
 package students.items;
 
+import java.util.HashMap; 
+
 public class Item {
 	int age;
 	int maturationAge;
@@ -13,6 +15,11 @@ public class Item {
 		this.deathAge = deathAge;
 		this.monetaryValue = monetaryValue;
 		this.symbol = symbol;
+	}
+	
+	public int getGenerations(Item objName ){
+		HashMap<String, Integer> capitalCities = new HashMap<String, Integer>();
+		capitalCities.put(symbol, objName.getGenerations());
 	}
 
 	public void tick() {
