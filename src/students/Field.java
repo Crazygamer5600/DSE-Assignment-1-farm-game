@@ -13,6 +13,10 @@ public class Field {
 	int width;
 	Item[][] fieldItems;//2d array similar to excel table
 	
+	public void reduceGenerationCount(Item x){
+		x.reduceGenerationCount();
+	}
+	
 	public Field(int height, int width) {
 		this.height = height;
 		this.width = width;
@@ -34,9 +38,11 @@ public class Field {
 				Random ran = new Random();
 				int x = ran.nextInt(5) + 1;
 				if (fieldItems[currentRow][rowElement].getSymbol() == "." && x==1){
+					fieldItems[currentRow][rowElement].reduceGenerationCount();
 					fieldItems[currentRow][rowElement] = new Weed();
 				}
 				if (fieldItems[currentRow][rowElement].died()==true) {
+					fieldItems[currentRow][rowElement].reduceGenerationCount();
 					fieldItems[currentRow][rowElement]=new UntilledSoil();
 				}
 				System.out.println(fieldItems[currentRow][rowElement]);
@@ -69,6 +75,7 @@ public class Field {
 	}
 	
 	public void till(int xCoord, int yCoord) {
+		fieldItems[xCoord-1][yCoord-1].reduceGenerationCount();
 		fieldItems[xCoord-1][yCoord-1] = new Soil();
 	}
 
@@ -77,6 +84,7 @@ public class Field {
 	}
 	
 	public void plant(int xCoord, int yCoord, Item plant) {
+		fieldItems[xCoord-1][yCoord-1].reduceGenerationCount();
 		fieldItems[xCoord-1][yCoord-1] = plant;
 	}
 	

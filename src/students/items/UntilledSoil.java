@@ -8,10 +8,12 @@ public class UntilledSoil extends Item{
 	}
 	
 	public static int getGenerationCount(){
-		subclassCount++;
 		return subclassCount;
 	}
 
+	public void reduceGenerationCount(){
+		subclassCount--;
+	}
 	
 	
 	

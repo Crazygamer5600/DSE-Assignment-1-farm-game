@@ -1,6 +1,6 @@
 package students.items;
 
-public class Item {
+public abstract class Item {
 	int age;
 	int maturationAge;
 	int deathAge;
@@ -14,6 +14,8 @@ public class Item {
 		this.monetaryValue = monetaryValue;
 		this.symbol = symbol;
 	}
+	
+	public abstract void reduceGenerationCount();
 
 	public void tick() {
 		age++;
