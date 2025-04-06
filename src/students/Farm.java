@@ -19,9 +19,19 @@ public class Farm {
 		while(!input.equals("q")) {
 			System.out.println(beerenburg.toString());
 			input = command.nextLine();
-			if(!input.equals("w") && !input.equals("s") && !input.equals("q") && input.charAt(0)!=('t') && input.charAt(0)!=('h') && input.charAt(0)!=('p')) {
-				System.out.println("invalid input");
+			
+			if (input.length()==1) {
+				if(!input.equals("w") && !input.equals("s") && !input.equals("q")){
+					System.out.println("invalid input");
+				}
 			}
+			
+			else if (input.length()>1) {
+				if(!input.substring(0,2).equals("t ") && !input.substring(0,2).equals("h ") && !input.substring(0,2).equals("p ")){
+					System.out.println("invalid input");
+				}
+			}
+			
 			beerenburg.tick();
 			
 			
