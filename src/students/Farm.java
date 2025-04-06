@@ -11,13 +11,20 @@ public class Farm {
 	}
 	
 	public void run(){
+		String input = "";
 		Scanner command = new Scanner(System.in);
-		String input = command.nextLine();
 		Field beerenburg=new Field(fieldHeight,fieldWidth);
 		beerenburg.prepField();
 		
-		while(input!="q") {
-			beerenburg.toString();
+		while(!input.equals("q")) {
+			System.out.println(beerenburg.toString());
+			input = command.nextLine();
+			if(!input.equals("w") && !input.equals("s") && !input.equals("q") && input.charAt(0)!=('t') && input.charAt(0)!=('h') && input.charAt(0)!=('p')) {
+				System.out.println("invalid input");
+			}
+			beerenburg.tick();
+			
+			
 		}
 		
 		

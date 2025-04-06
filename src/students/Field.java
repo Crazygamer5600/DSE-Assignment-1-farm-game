@@ -45,7 +45,6 @@ public class Field {
 					fieldItems[currentRow][rowElement].reduceGenerationCount();
 					fieldItems[currentRow][rowElement]=new UntilledSoil();
 				}
-				System.out.println(fieldItems[currentRow][rowElement]);
 			}
 		}
 	}
