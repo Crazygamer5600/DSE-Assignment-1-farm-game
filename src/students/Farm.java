@@ -47,8 +47,8 @@ public class Farm {
 				}
 				else if (coords1.length==2) {
 					try {
-					int xCoord = Integer.parseInt(coords1[1]);// attempts to convert the string coordinates into integers but if this fails it prints an invalid input error
-					int yCoord = Integer.parseInt(coords1[0]);
+					int xCoord = Integer.parseInt(coords1[0]);// attempts to convert the string coordinates into integers but if this fails it prints an invalid input error
+					int yCoord = Integer.parseInt(coords1[1]);
 					coords1[0] = Integer.toString(xCoord);//assigns the variables to coords1 element 0 and 1
 					coords1[1] = Integer.toString(yCoord);
 					}catch(Exception e){
@@ -57,7 +57,11 @@ public class Farm {
 						coords1[1] = Integer.toString(-1);
 						
 					}
-					if (Integer.parseInt(coords1[0])!=-1) {//ensures that the exception has not occurred
+					if (Integer.parseInt(coords1[0])==-1 || Integer.parseInt(coords1[1])==-1) {
+						System.out.println("invalid");
+					}
+						
+					else if (Integer.parseInt(coords1[0])!=-1 || Integer.parseInt(coords1[1])!=-1) {//ensures that the exception has not occurred
 						int xCoord = Integer.parseInt(coords1[0]);
 						int yCoord = Integer.parseInt(coords1[1]);
 						if (xCoord>fieldWidth || yCoord > fieldHeight || xCoord <= 0 || yCoord <= 0) {//makes sure that neither of the inputs are greater than the bounds of the field
@@ -65,7 +69,6 @@ public class Farm {
 						}
 						else {
 							if (input.substring(0,1).equals("t")){
-								System.out.println("yolo");
 								beerenburg.till(xCoord, yCoord);
 								
 							}

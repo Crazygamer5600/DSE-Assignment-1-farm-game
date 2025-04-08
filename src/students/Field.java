@@ -74,17 +74,17 @@ public class Field {
 	}
 	
 	public void till(int xCoord, int yCoord) {
-		fieldItems[xCoord-1][yCoord-1].reduceGenerationCount();
-		fieldItems[xCoord-1][yCoord-1] = new Soil();
+		fieldItems[yCoord-1][xCoord-1].reduceGenerationCount();
+		fieldItems[yCoord-1][xCoord-1] = new Soil();
 	}
 
 	public Item get(int xCoord, int yCoord) {
-		return fieldItems[xCoord-1][yCoord-1];
+		return fieldItems[yCoord-1][xCoord-1];
 	}
 	
 	public void plant(int xCoord, int yCoord, Item plant) {
-		fieldItems[xCoord-1][yCoord-1].reduceGenerationCount();
-		fieldItems[xCoord-1][yCoord-1] = plant;
+		fieldItems[yCoord-1][xCoord-1].reduceGenerationCount();
+		fieldItems[yCoord-1][xCoord-1] = plant;
 	}
 	
 	public int getValue() {
