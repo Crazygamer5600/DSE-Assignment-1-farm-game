@@ -2,8 +2,9 @@ package students.items;
 
 public class Grain extends Food{
 	static int subclassCount;
+	static int seedPrice = 1;
 	public Grain() {
-		super(0, 2, 6, 2, "g", 1);
+		super(0, 2, 6, 2, "g");
 		subclassCount++;
 	}
 	
@@ -16,7 +17,10 @@ public class Grain extends Food{
 			String x = symbol.toUpperCase();
 			symbol=x;}
 		return symbol;}
-
+	
+	public static int getSeedPrice() {
+		return seedPrice;
+	}
 	
 	public void reduceGenerationCount() {
 		subclassCount--;	

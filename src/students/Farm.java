@@ -1,13 +1,19 @@
 package students;
 import java.util.Scanner;
 
+import students.items.Apples;
+import students.items.Grain;
+
+
 public class Farm {
 	int fieldWidth;
 	int fieldHeight;
+	int Funds;
 	
-	public Farm(int fieldWidth, int fieldHeight, int startingFunds) {
-	this.fieldWidth=fieldWidth;
-	this.fieldHeight=fieldHeight;
+	public Farm(int fieldWidth, int fieldHeight, int Funds) {
+	this.fieldWidth = fieldWidth;
+	this.fieldHeight = fieldHeight;
+	this.Funds = Funds;
 	}
 	
 
@@ -73,13 +79,45 @@ public class Farm {
 								
 							}
 							
-							if (input.substring(0)=="h"){
+							if (input.substring(0,1).equals("h")){
+								this.Funds+= beerenburg.get(xCoord, yCoord).getValue();
+								System.out.println("Player Funds are now: "+this.Funds);
 							}
 							
-							if (input.substring(0)=="q"){
+							if (input.substring(0,1).equals("p")){
+								System.out.println("Enter:\r\n" + " - 'a' to buy an apple for $\r\n" + " - 'g' to buy grain for\r\n" + "");
+								String seedToPurchase;
+								seedToPurchase = command.nextLine();
+								if (!seedToPurchase.equals("a") && !seedToPurchase.equals("g")) {
+									System.out.println("invalid1");
+								}
+								
+								if (seedToPurchase.equals("a")) {
+									System.out.println(this.Funds+" "+Apples.getSeedPrice());
+									if (Apples.getSeedPrice()>this.Funds){
+										System.out.println("insufficient funds");
+									}
+									else {
+									this.Funds-=Apples.getSeedPrice();
+									Apples apple = new Apples();
+									beerenburg.plant(xCoord, yCoord, apple);
+									}
+								}
+								
+								if (seedToPurchase.equals("g")) {
+									if (Grain.getSeedPrice()>this.Funds) {
+										System.out.println("insufficient funds");
+									}
+									else {
+									this.Funds-=Grain.getSeedPrice();
+									Grain wheat = new Grain();
+									beerenburg.plant(xCoord, yCoord, wheat);
+									}
+								
 							}
 							
 							beerenburg.toString();
+							}
 						}
 					}
 				}		

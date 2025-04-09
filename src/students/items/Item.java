@@ -44,7 +44,12 @@ public abstract class Item {
 	
 	
 	public String getSymbol() {
+		if (age>maturationAge) {
+			return symbol.toUpperCase();
+		}
+		else {
 		return symbol;
+		}
 	}
 
 	public boolean equals(Item x, Item y) {
