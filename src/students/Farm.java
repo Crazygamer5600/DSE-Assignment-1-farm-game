@@ -39,6 +39,10 @@ public class Farm {
 				if(!input.equals("w") && !input.equals("s") && !input.equals("q")){//ensures that single character inputs = w,s or q
 					System.out.println("invalid input");
 				}
+				
+				if(input.equals("s")) {
+					System.out.println(beerenburg.getSummary());
+				}
 			}
 			
 			else if (input.length()>1) { 
