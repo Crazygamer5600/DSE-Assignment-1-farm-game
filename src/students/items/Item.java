@@ -23,21 +23,23 @@ public abstract class Item {
 
 	public void setAge(int age) {
 		this.age = age;
-		
 	}
 	
 	public boolean died() {
 		boolean dead = false;
+		
 		if(age > deathAge) {
 			dead = true;
 		}
+		
 		return dead;
 	}
 
 	public int getValue() {
 		if (age > maturationAge) {
 			return monetaryValue;
-		} else {
+		}
+		else {
 			return 0;
 		}
 	}
@@ -55,13 +57,14 @@ public abstract class Item {
 	public boolean equals(Item x, Item y) {
 		if (x.age == y.age && x.deathAge == y.deathAge && x.maturationAge == y.maturationAge && x.monetaryValue == y.monetaryValue) {
 			return true;
-		} else {
+		}
+		else {
 			return false;
 		}
 	}
 
 	@Override
-	public String toString(){
+	public String toString() {
 		return "Item [age=" + age + ", maturationAge=" + maturationAge + ", deathAge=" + deathAge + ", monetaryValue="
 				+ monetaryValue + "]";
 	}
