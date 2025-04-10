@@ -28,5 +28,14 @@ public class Apples extends Food {
 		}
 		return symbol;
 	}
+
+	@Override
+	public String toString() {
+		if(age > maturationAge) {
+			this.symbol = "A";
+		}
+		return symbol;
+	}
+	
 }
 

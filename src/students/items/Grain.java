@@ -28,6 +28,14 @@ public class Grain extends Food{
 	public void reduceGenerationCount() {
 		subclassCount--;	
 	}
+
+	@Override
+	public String toString() {
+		if(age > maturationAge) {
+			this.symbol = "G";
+		}
+		return symbol;
+	}
 	
 		
 	}

@@ -21,15 +21,13 @@ public class Field {
 		this.height = height;
 		this.width = width;
 		this.fieldItems = new Item[width][height];
-	}
-	
-	public void prepField() {
 		for (int currentRow = 0; currentRow < height; currentRow++) {
 			for (int rowElement = 0; rowElement < width; rowElement++) {
 				fieldItems[currentRow][rowElement] = new Soil();
 			}
 		}	
-	}	
+	}
+
 
 	public void tick() {
 		for (int currentRow = 0; currentRow < height; currentRow++) {
@@ -73,18 +71,19 @@ public class Field {
 		
 	}
 	
+	
 	public void till(int xCoord, int yCoord) {
-		fieldItems[yCoord-1][xCoord-1].reduceGenerationCount();
-		fieldItems[yCoord-1][xCoord-1] = new Soil();
+		fieldItems[yCoord][xCoord].reduceGenerationCount();
+		fieldItems[yCoord][xCoord] = new Soil();
 	}
 
 	public Item get(int xCoord, int yCoord) {
-		return fieldItems[yCoord-1][xCoord-1];
+		return fieldItems[yCoord][xCoord];
 	}
 	
 	public void plant(int xCoord, int yCoord, Item plant) {
-		fieldItems[yCoord-1][xCoord-1].reduceGenerationCount();
-		fieldItems[yCoord-1][xCoord-1] = plant;
+		fieldItems[yCoord][xCoord].reduceGenerationCount();
+		fieldItems[yCoord][xCoord] = plant;
 	}
 	
 	public int getValue() {

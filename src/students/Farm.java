@@ -20,7 +20,6 @@ public class Farm {
 		String input = "";
 		Scanner command = new Scanner(System.in);
 		Field beerenburg = new Field(fieldHeight, fieldWidth);
-		beerenburg.prepField();
 		
 		while(!input.equals("q")) {
 			
@@ -71,8 +70,8 @@ public class Farm {
 					}
 						
 					else if (Integer.parseInt(coords1[0]) != -1 || Integer.parseInt(coords1[1]) != -1) { //ensures that the exception has not occurred
-						int xCoord = Integer.parseInt(coords1[0]);
-						int yCoord = Integer.parseInt(coords1[1]);
+						int xCoord = Integer.parseInt(coords1[0])-1;
+						int yCoord = Integer.parseInt(coords1[1])-1;
 						if (xCoord>fieldWidth || yCoord > fieldHeight || xCoord <= 0 || yCoord <= 0) { //makes sure that neither of the inputs are greater than the bounds of the field
 							System.out.println("invalid");
 						}

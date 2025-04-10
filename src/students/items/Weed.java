@@ -15,6 +15,11 @@ public class Weed extends Item{
 	public void reduceGenerationCount() {
 		subclassCount--;
 	}
+	
+	@Override
+	public String toString() {
+		return symbol;
+	}
 
 	
 }

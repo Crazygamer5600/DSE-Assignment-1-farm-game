@@ -16,4 +16,9 @@ public class Soil extends Item {
 		subclassCount--;
 	}
 	
+	@Override
+	public String toString() {
+		return symbol;
+	}
+	
 }
