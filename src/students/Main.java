@@ -23,7 +23,7 @@ public class Main {
 //		System.out.println(r.toString());
 //		System.out.println(r.getSummary());
 //		System.out.println(Apples.getGenerationCount());
-		Farm beerenburg = new Farm(10,10,10);
+		Farm beerenburg = new Farm(10,10,1000000);
 		beerenburg.run();
 		
 		

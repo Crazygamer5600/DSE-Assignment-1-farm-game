@@ -22,7 +22,6 @@ public class Farm {
 		Field beerenburg = new Field(fieldHeight, fieldWidth);
 		
 		while(!input.equals("q")) {
-			
 			System.out.println(beerenburg.toString() + "\n" + "Bank balance: $" + this.Funds + "\n\nEnter your next action:\r\n" 
 			+ "  t x y: till\r\n" + "  h x y: harvest\r\n"	+ "  p x y: plant\r\n" + "  s: field summary\r\n" + "  w: wait\r\n" 
 			+ "  q: quit\r\n");
@@ -60,14 +59,13 @@ public class Farm {
 						coords1[1] = Integer.toString(yCoord);
 					} 
 					catch(Exception e) {
-						System.out.println("invalid");
 						coords1[0] = Integer.toString(-1); //if an error occurs then the coords become -1 to denote that the characters ascribed are not valid
 						coords1[1] = Integer.toString(-1);
 					}
 					
 					int xCoord = Integer.parseInt(coords1[0]) - 1;
 					int yCoord = Integer.parseInt(coords1[1]) - 1;
-					if (xCoord > fieldWidth || yCoord > fieldHeight || xCoord < 0 || yCoord < 0) { //makes sure that neither of the inputs are greater than the bounds of the field
+					if (xCoord >= fieldWidth || yCoord >= fieldHeight || xCoord < 0 || yCoord < 0) { //makes sure that neither of the inputs are greater than the bounds of the field
 						System.out.println("invalid");
 					}
 					else {

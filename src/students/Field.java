@@ -13,10 +13,6 @@ public class Field {
 	int width;
 	Item[][] fieldItems;//2d array similar to excel table
 	
-	public void reduceGenerationCount(Item x){//reduces gen count of any item.
-		x.reduceGenerationCount();
-	}
-	
 	public Field(int height, int width) {
 		this.height = height;
 		this.width = width;

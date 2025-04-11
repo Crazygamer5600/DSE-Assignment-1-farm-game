@@ -20,6 +20,7 @@ public class Apples extends Food {
 	public static int getSeedPrice() {
 		return seedPrice;
 	}
+	
 		
 	public String MaturationStr() {
 		if (age > maturationAge) {
