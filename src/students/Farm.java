@@ -65,63 +65,57 @@ public class Farm {
 						coords1[1] = Integer.toString(-1);
 					}
 					
-					if (Integer.parseInt(coords1[0]) == -1 || Integer.parseInt(coords1[1]) == -1) {
+					int xCoord = Integer.parseInt(coords1[0]) - 1;
+					int yCoord = Integer.parseInt(coords1[1]) - 1;
+					if (xCoord > fieldWidth || yCoord > fieldHeight || xCoord < 0 || yCoord < 0) { //makes sure that neither of the inputs are greater than the bounds of the field
 						System.out.println("invalid");
 					}
-						
-					else if (Integer.parseInt(coords1[0]) != -1 || Integer.parseInt(coords1[1]) != -1) { //ensures that the exception has not occurred
-						int xCoord = Integer.parseInt(coords1[0]) - 1;
-						int yCoord = Integer.parseInt(coords1[1]) - 1;
-						if (xCoord > fieldWidth || yCoord > fieldHeight || xCoord <= 0 || yCoord <= 0) { //makes sure that neither of the inputs are greater than the bounds of the field
-							System.out.println("invalid");
+					else {
+						if (input.substring(0, 1).equals("t")) { // checks if the user is trying to till
+							beerenburg.till(xCoord, yCoord);
 						}
-						else {
-							if (input.substring(0, 1).equals("t")) { // checks if the user is trying to till
-								beerenburg.till(xCoord, yCoord);
-							}
 							
-							if (input.substring(0, 1).equals("h")) { // checks if the user is trying to harvest
-								this.Funds+= beerenburg.get(xCoord, yCoord).getValue();
-							}
+						if (input.substring(0, 1).equals("h")) { // checks if the user is trying to harvest
+							this.Funds+= beerenburg.get(xCoord, yCoord).getValue();
+						}
 							
-							if (input.substring(0, 1).equals("p")) { // checks if the user is trying to plant
-								System.out.println("Enter:\r\n" + " - 'a' to buy an apple for $\r\n" + " - 'g' to buy grain for\r\n");
-								String seedToPurchase;
-								seedToPurchase = command.nextLine();
-								if (!seedToPurchase.equals("a") && !seedToPurchase.equals("g")) { //makes sure that the user is choosing one of the two options of an apple or a grain
-									System.out.println("invalid");
-								}
+						if (input.substring(0, 1).equals("p")) { // checks if the user is trying to plant
+							System.out.println("Enter:\r\n" + " - 'a' to buy an apple for $\r\n" + " - 'g' to buy grain for\r\n");
+							String seedToPurchase;
+							seedToPurchase = command.nextLine();
+							if (!seedToPurchase.equals("a") && !seedToPurchase.equals("g")) { //makes sure that the user is choosing one of the two options of an apple or a grain
+								System.out.println("invalid");
+							}
 								
-								if (seedToPurchase.equals("a")) { // code to execute if apple is chosen
-									if (Apples.getSeedPrice() > this.Funds) { // makes sure that user can afford an apple seed
-										System.out.println("insufficient funds");
-									}
-									
-									else { // condition to follow if user can afford seeds
-										this.Funds -= Apples.getSeedPrice(); // deducts from funds the seed price
-										Apples apple = new Apples(); // instantiates an apple object to plant
-										beerenburg.plant(xCoord, yCoord, apple); // plants the object at the specific coordinate
-									}
+							if (seedToPurchase.equals("a")) { // code to execute if apple is chosen
+								if (Apples.getSeedPrice() > this.Funds) { // makes sure that user can afford an apple seed
+									System.out.println("insufficient funds");
 								}
-								
-								if (seedToPurchase.equals("g")) { // code to execute if grain is chosen
-									if (Grain.getSeedPrice() > this.Funds) { // makes sure that user can afford a grain seed
-										System.out.println("insufficient funds");
-									}
 									
-									else { // condition to follow if user can afford seeds
-										this.Funds -= Grain.getSeedPrice(); // deducts from funds the seed price
-										Grain wheat = new Grain(); // instantiates a grain object to plant
-										beerenburg.plant(xCoord, yCoord, wheat); // plants the object at the specific coordinate
-									}
+								else { // condition to follow if user can afford seeds
+									this.Funds -= Apples.getSeedPrice(); // deducts from funds the seed price
+									Apples apple = new Apples(); // instantiates an apple object to plant
+									beerenburg.plant(xCoord, yCoord, apple); // plants the object at the specific coordinate
+								}
+							}
+								
+							if (seedToPurchase.equals("g")) { // code to execute if grain is chosen
+								if (Grain.getSeedPrice() > this.Funds) { // makes sure that user can afford a grain seed
+									System.out.println("insufficient funds");
+								}
+									
+								else { // condition to follow if user can afford seeds
+									this.Funds -= Grain.getSeedPrice(); // deducts from funds the seed price
+									Grain wheat = new Grain(); // instantiates a grain object to plant
+									beerenburg.plant(xCoord, yCoord, wheat); // plants the object at the specific coordinate
 								}
 							}
 						}
 					}
-				}		
+				}
 			}
 			beerenburg.tick();
-		}	
-	}		
+		}
+	}				
 }
 
