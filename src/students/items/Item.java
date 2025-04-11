@@ -46,11 +46,11 @@ public abstract class Item {
 	
 	
 	public String getSymbol() {
-		if (age>maturationAge) {
+		if (age > maturationAge) {
 			return symbol.toUpperCase();
 		}
 		else {
-		return symbol;
+			return symbol;
 		}
 	}
 

@@ -11,9 +11,9 @@ public class Farm {
 	int Funds;
 	
 	public Farm(int fieldWidth, int fieldHeight, int Funds) {
-	this.fieldWidth = fieldWidth;
-	this.fieldHeight = fieldHeight;
-	this.Funds = Funds;
+		this.fieldWidth = fieldWidth;
+		this.fieldHeight = fieldHeight;
+		this.Funds = Funds;
 	}
 	
 	public void run() {
@@ -54,10 +54,10 @@ public class Farm {
 				
 				else if (coords1.length == 2) {
 					try {
-					int xCoord = Integer.parseInt(coords1[0]); // attempts to convert the string coordinates into integers but if this fails it prints an invalid input error
-					int yCoord = Integer.parseInt(coords1[1]);
-					coords1[0] = Integer.toString(xCoord); //assigns the variables to coords1 element 0 and 1
-					coords1[1] = Integer.toString(yCoord);
+						int xCoord = Integer.parseInt(coords1[0]); // attempts to convert the string coordinates into integers but if this fails it prints an invalid input error
+						int yCoord = Integer.parseInt(coords1[1]);
+						coords1[0] = Integer.toString(xCoord); //assigns the variables to coords1 element 0 and 1
+						coords1[1] = Integer.toString(yCoord);
 					} 
 					catch(Exception e) {
 						System.out.println("invalid");
@@ -70,9 +70,9 @@ public class Farm {
 					}
 						
 					else if (Integer.parseInt(coords1[0]) != -1 || Integer.parseInt(coords1[1]) != -1) { //ensures that the exception has not occurred
-						int xCoord = Integer.parseInt(coords1[0])-1;
-						int yCoord = Integer.parseInt(coords1[1])-1;
-						if (xCoord>fieldWidth || yCoord > fieldHeight || xCoord <= 0 || yCoord <= 0) { //makes sure that neither of the inputs are greater than the bounds of the field
+						int xCoord = Integer.parseInt(coords1[0]) - 1;
+						int yCoord = Integer.parseInt(coords1[1]) - 1;
+						if (xCoord > fieldWidth || yCoord > fieldHeight || xCoord <= 0 || yCoord <= 0) { //makes sure that neither of the inputs are greater than the bounds of the field
 							System.out.println("invalid");
 						}
 						else {
@@ -93,26 +93,26 @@ public class Farm {
 								}
 								
 								if (seedToPurchase.equals("a")) { // code to execute if apple is chosen
-									if (Apples.getSeedPrice()>this.Funds){ // makes sure that user can afford an apple seed
+									if (Apples.getSeedPrice() > this.Funds) { // makes sure that user can afford an apple seed
 										System.out.println("insufficient funds");
 									}
 									
 									else { // condition to follow if user can afford seeds
-									this.Funds -= Apples.getSeedPrice(); // deducts from funds the seed price
-									Apples apple = new Apples(); // instantiates an apple object to plant
-									beerenburg.plant(xCoord, yCoord, apple); // plants the object at the specific coordinate
+										this.Funds -= Apples.getSeedPrice(); // deducts from funds the seed price
+										Apples apple = new Apples(); // instantiates an apple object to plant
+										beerenburg.plant(xCoord, yCoord, apple); // plants the object at the specific coordinate
 									}
 								}
 								
 								if (seedToPurchase.equals("g")) { // code to execute if grain is chosen
-									if (Grain.getSeedPrice()>this.Funds) { // makes sure that user can afford a grain seed
+									if (Grain.getSeedPrice() > this.Funds) { // makes sure that user can afford a grain seed
 										System.out.println("insufficient funds");
 									}
 									
 									else { // condition to follow if user can afford seeds
-									this.Funds-=Grain.getSeedPrice(); // deducts from funds the seed price
-									Grain wheat = new Grain(); // instantiates a grain object to plant
-									beerenburg.plant(xCoord, yCoord, wheat); // plants the object at the specific coordinate
+										this.Funds -= Grain.getSeedPrice(); // deducts from funds the seed price
+										Grain wheat = new Grain(); // instantiates a grain object to plant
+										beerenburg.plant(xCoord, yCoord, wheat); // plants the object at the specific coordinate
 									}
 								}
 							}

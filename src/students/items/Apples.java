@@ -22,9 +22,9 @@ public class Apples extends Food {
 	}
 		
 	public String MaturationStr() {
-		if (age>maturationAge){
+		if (age > maturationAge) {
 			String x = symbol.toUpperCase();
-			symbol=x;
+			symbol = x;
 		}
 		return symbol;
 	}

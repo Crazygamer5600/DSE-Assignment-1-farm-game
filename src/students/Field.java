@@ -21,6 +21,7 @@ public class Field {
 		this.height = height;
 		this.width = width;
 		this.fieldItems = new Item[width][height];
+		
 		for (int currentRow = 0; currentRow < height; currentRow++) {
 			for (int rowElement = 0; rowElement < width; rowElement++) {
 				fieldItems[currentRow][rowElement] = new Soil();
@@ -35,13 +36,13 @@ public class Field {
 				fieldItems[currentRow][rowElement].tick();
 				Random ran = new Random();
 				int x = ran.nextInt(5) + 1;
-				if (fieldItems[currentRow][rowElement].getSymbol() == "." && x==1){
+				if (fieldItems[currentRow][rowElement].getSymbol() == "." && x == 1) {
 					fieldItems[currentRow][rowElement].reduceGenerationCount();
 					fieldItems[currentRow][rowElement] = new Weed();
 				}
-				if (fieldItems[currentRow][rowElement].died()==true) {
+				if (fieldItems[currentRow][rowElement].died() == true) {
 					fieldItems[currentRow][rowElement].reduceGenerationCount();
-					fieldItems[currentRow][rowElement]=new UntilledSoil();
+					fieldItems[currentRow][rowElement] = new UntilledSoil();
 				}
 			}
 		}
@@ -52,20 +53,22 @@ public class Field {
 		String fieldView=" ";
 		for (int currentRow = 0; currentRow < width; currentRow++) {
 			fieldView += " "+Integer.toString(currentRow+1);
-			if (currentRow == width-1) {
+			if (currentRow == width - 1) {
 				fieldView+="\n";
 			}
 		}
 		for (int currentRow = 0; currentRow < height; currentRow++) {
-			if (Integer.toString(currentRow+1).length()==1) {
-				fieldView+=Integer.toString(currentRow+1)+" ";}
+			if (Integer.toString(currentRow + 1).length() == 1) {
+				fieldView += Integer.toString(currentRow + 1) + " ";
+			}
 			else{
-				fieldView+=Integer.toString(currentRow+1);}
+				fieldView += Integer.toString(currentRow + 1);
+			}
 			
 			for (int rowElement = 0; rowElement < width; rowElement++) {
-				fieldView+=fieldItems[currentRow][rowElement].getSymbol() + " ";
+				fieldView += fieldItems[currentRow][rowElement].getSymbol() + " ";
 			}
-			fieldView+="\n";
+			fieldView += "\n";
 		}
 		return fieldView;
 		
@@ -87,12 +90,12 @@ public class Field {
 	}
 	
 	public int getValue() {
-		int monetaryValue=0;
+		int monetaryValue = 0;
 		for (int currentRow = 0; currentRow < height; currentRow++) {
 			for (int rowElement = 0; rowElement < width; rowElement++) {
 				monetaryValue += fieldItems[currentRow][rowElement].getValue();
-				}
 			}
+		}
 		return monetaryValue;
 	}
 	
@@ -103,13 +106,14 @@ public class Field {
 		int untilledSum = UntilledSoil.getGenerationCount();
 		int weedSum = Weed.getGenerationCount();
 		
-		String summary="Apples:"+appleSum+"\n"+"Grain:"+grainSum+"\n"+"Soil:"+soilSum+"\n"+"Untilled:"+untilledSum+"\n"+"Weed:"+weedSum+"\n";
+		String summary = "Apples:" + appleSum + "\n" + "Grain:" + grainSum + "\n" + "Soil:" + soilSum + "\n" + "Untilled:" + untilledSum 
+				+ "\n" + "Weed:" + weedSum + "\n";
 		
 		return summary;		
-			}
-		
-		
 	}
+		
+		
+}
 
 	
 	

@@ -1,6 +1,6 @@
 package students.items;
 
-public class Weed extends Item{
+public class Weed extends Item {
 	static int subclassCount;
 	
 	public Weed() {
