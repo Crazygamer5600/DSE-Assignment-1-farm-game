@@ -20,17 +20,17 @@ public class Farm {
 	public void run() {
 		String input = "";
 		Scanner command = new Scanner(System.in);
-		Field beerenburg = new Field(fieldWidth, fieldHeight);// instantiates the field then prepares a 2d array populated solely
+		Field beerenburg = new Field(fieldWidth, fieldHeight);// instantiates the field then prepares a 2d array populated solely with soil
 		
-		while(!input.equals("q")) {// begins the game under the pretense that input should never be equal to q and continue in the loop
+		while(!input.equals("q")) {
 			System.out.println(beerenburg.toString() + "\n" + "Bank balance: $" + this.funds + "\n\nEnter your next action:\r\n" 
 			+ "  t x y: till\r\n" + "  h x y: harvest\r\n"	+ "  p x y: plant\r\n" + "  s: field summary\r\n" + "  w: wait\r\n"
 			+ "  f x y: fertilize in bulk \r\n" + "  q: quit\r\n");
 			
 			input = command.nextLine();
 			
-			if (input.length() == 1) { //if the input has a length of one character
-				if(!input.equals("w") && !input.equals("s") && !input.equals("q")) { //ensures that single character inputs = w,s or q otherwise it will print erro then skip turn
+			if (input.length() == 1) {
+				if(!input.equals("w") && !input.equals("s") && !input.equals("q")) { //ensures that single character inputs = w,s or q otherwise it will print an error message then skip turn
 					System.out.println("invalid input");
 				}
 				
@@ -41,11 +41,11 @@ public class Farm {
 			}
 			
 			else if (input.length() > 1) { 
-				if(!input.substring(0,2).equals("t ") && !input.substring(0,2).equals("h ") && !input.substring(0,2).equals("p ") && !input.substring(0,2).equals("f ")) { //ensures that multi-character inputs  begin with "t ","p ","b " or "h "
+				if(!input.substring(0,2).equals("t ") && !input.substring(0,2).equals("h ") && !input.substring(0,2).equals("p ") && !input.substring(0,2).equals("f ")) { //ensures that multi-character inputs  begin with "t ","h ","p " or "f "
 					System.out.println("invalid input");
 				}
 				
-				String coords = input.substring(2); // if the above input is correct this segments the input into the string following the operand of t,h and p
+				String coords = input.substring(2); // collects substring of operand meaning it can only be "t" , "h" , "p" or "f"
 				String[] coords1 = coords.split(" "); //removes spaces from the above coordinate and places each character separated with a space into an array
 				
 				if (coords1.length != 2) { //ensures there are only two coordinates
@@ -54,17 +54,15 @@ public class Farm {
 				
 				else if (coords1.length == 2) {
 					try {
-						int xCoord = Integer.parseInt(coords1[0]); // attempts to convert the coordinates into integers but if this fails it assigns invalid numbers to a variable which will make the program know it is invalid. 
+						int xCoord = Integer.parseInt(coords1[0]); // attempts to convert the coordinates into integers
 						int yCoord = Integer.parseInt(coords1[1]);
-						coords1[0] = Integer.toString(xCoord); //assigns the variables to coords1 element 0 and 1
-						coords1[1] = Integer.toString(yCoord);
 					} 
-					catch(Exception e) {
-						coords1[0] = Integer.toString(-1); //if an error occurs then the coords become -1 to denote that the characters ascribed are not valid
+					catch(Exception e) { // if integer conversion fails it sets the coords1 array to contain only -1 therefore guaranteeing a string compatible with integer type.
+						coords1[0] = Integer.toString(-1); // coords become -1 to denote that the characters ascribed aren't valid in later code
 						coords1[1] = Integer.toString(-1);
 					}
 					
-					int xCoord = Integer.parseInt(coords1[0]) - 1;
+					int xCoord = Integer.parseInt(coords1[0]) - 1; // converts the values to an integer then subtracts 1 for array index compatibility
 					int yCoord = Integer.parseInt(coords1[1]) - 1;
 					if (xCoord >= fieldWidth || yCoord >= fieldHeight || xCoord < 0 || yCoord < 0) { //makes sure that neither of the inputs are greater than the bounds of the field
 						System.out.println("invalid input");
@@ -86,57 +84,54 @@ public class Farm {
 							String coveredArea;
 							coveredArea = command.nextLine();
 							String[] coveredArea1 = coveredArea.split(" ");
-							if (coveredArea1.length != 2) { //ensures there are only two coordinates
+							if (coveredArea1.length != 2) { //ensures there are only two units of expansion for vertical and horizontal
 								System.out.println("invalid input");
 							}
 							
 							else if (coveredArea1.length == 2) {
 								try {
-									int horizonRange = Integer.parseInt(coveredArea1[0]); // attempts to convert the range into integers but if this fails it assigns a value which the program will know is wrong
+									int horizonRange = Integer.parseInt(coveredArea1[0]); // attempts to convert both elements in the covered area array into integers
 									int verticalRange = Integer.parseInt(coveredArea1[1]);
-									coveredArea1[0] = Integer.toString(horizonRange); //assigns the variables to coords1 element 0 and 1
-									coveredArea1[1] = Integer.toString(verticalRange);
 								}catch(Exception f) {
-									coveredArea1[0] = Integer.toString(Integer.MAX_VALUE); //if an error occurs then range is maxxed to denote that input is invalid;
+									coveredArea1[0] = Integer.toString(Integer.MAX_VALUE); //if an error occurs both elements in the covered area array become an integer value which the program knows is invalid in later code
 									coveredArea1[1] = Integer.toString(Integer.MAX_VALUE);
 								}
 								
 								
-								if (Integer.parseInt(coveredArea1[0]) + xCoord > fieldWidth-1 || Integer.parseInt(coveredArea1[0]) + xCoord > fieldWidth-1) {
+								if (Integer.parseInt(coveredArea1[0]) + xCoord > fieldWidth-1 || Integer.parseInt(coveredArea1[0]) + xCoord > fieldWidth-1) {// checks the sum of the coordinates to the corresponding area of expanse don't exceed the field's size
 									System.out.println("invalid input");
 								}
 								
-								else if (Integer.parseInt(coveredArea1[0]) < 0 || Integer.parseInt(coveredArea1[1]) < 0 ) {
+								else if (Integer.parseInt(coveredArea1[0]) < 0 || Integer.parseInt(coveredArea1[1]) < 0 ) {// ensures inputs aren't sub 0
 									System.out.println("invalid input");
 								}
 								
-								else if (Integer.parseInt(coveredArea1[0]) == 0  && Integer.parseInt(coveredArea1[1]) == 0) {
-									if (this.funds<=0) {
+								else if (Integer.parseInt(coveredArea1[0]) == 0  && Integer.parseInt(coveredArea1[1]) == 0) {// condition if no area of expanse is covered
+									if (this.funds<=0) {// checks you have money
 										System.out.println("insufficient funds");
-										break;
 									}
 									else {
-										this.funds -= Fertilizer.getPrice();
+										this.funds -= Fertilizer.getPrice(); // deducts fertilizer price
+										beerenburg.fertilize(xCoord, yCoord); // fertilizes only the coordinate selected prior to the second input
 									}
-									beerenburg.fertilize(xCoord, yCoord);
 								}
 								
 								else if (Integer.parseInt(coveredArea1[0]) == 0  && Integer.parseInt(coveredArea1[0]) != 0) {
-									for (int y = 0; yCoord + y <= yCoord + Integer.parseInt(coveredArea1[1]);) {
+									for (int y = 0; yCoord + y <= yCoord + Integer.parseInt(coveredArea1[1]);) { // fertilizes only on a vertical line
 										if (this.funds<=0) {
 											System.out.println("insufficient funds");
 											break;
 										}
 										else {
 											this.funds -= Fertilizer.getPrice();
-										}
-										beerenburg.fertilize(xCoord, yCoord-y);
+											beerenburg.fertilize(xCoord, yCoord-y);
 										}
 									}
+								}
 								
 								
 								else if (Integer.parseInt(coveredArea1[0]) != 0  && Integer.parseInt(coveredArea1[0]) == 0) {
-									for (int x = 0; xCoord + x <= xCoord + Integer.parseInt(coveredArea1[1]); ) {
+									for (int x = 0; xCoord + x <= xCoord + Integer.parseInt(coveredArea1[1]); ) { // fertilizes only on a horizontal line
 										if (this.funds<=0) {
 											System.out.println("insufficient funds");
 											break;

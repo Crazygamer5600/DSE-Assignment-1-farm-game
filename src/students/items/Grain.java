@@ -15,14 +15,6 @@ public class Grain extends Food{
 		return subclassCount;
 	}
 	
-	public String MaturationStr() {
-		if (age > maturationAge) {
-			String x = symbol.toUpperCase();
-			symbol = x;
-		}
-		return symbol;
-	}
-	
 	public static int getSeedPrice() {
 		return seedPrice;
 	}

@@ -102,7 +102,7 @@ public class Field {
 	}
 	
 	public String getSummary() {
-		int appleSum = Apples.getGenerationCount();
+		int appleSum = Apples.getGenerationCount(); // each variable with get gen count monitors the quantity of each object currently in the field
 		int grainSum = Grain.getGenerationCount();
 		int soilSum = Soil.getGenerationCount();
 		int untilledSum = UntilledSoil.getGenerationCount();
@@ -111,7 +111,7 @@ public class Field {
 		
 		String summary = "Apples:" + appleSum + "\n" + "Grain:" + grainSum + "\n" + "Soil:" + soilSum + "\n" + "Untilled:" + untilledSum 
 				+ "\n" + "Weed:" + weedSum + "\n" + "fetilizer:" + fertilizedSum + "\nFor a total of $" + this.getValue() + "\nTotal apples created: "
-				+ Apples.getAppleCount() + "\nTotal grain created: "+ Grain.getGrainCount() + "\n";
+				+ Apples.getAppleCount() + "\nTotal grain created: "+ Grain.getGrainCount() + "\n"; // grain count and apple count monitor past instances of apple and grain.
 		
 		return summary;		
 	}

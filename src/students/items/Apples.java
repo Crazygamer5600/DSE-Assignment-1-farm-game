@@ -26,15 +26,6 @@ public class Apples extends Food {
 	public static int getAppleCount() {
 		return appleCount;
 	}
-	
-		
-	public String MaturationStr() {
-		if (age > maturationAge) {
-			String x = symbol.toUpperCase();
-			symbol = x;
-		}
-		return symbol;
-	}
 
 	@Override
 	public String toString() {
