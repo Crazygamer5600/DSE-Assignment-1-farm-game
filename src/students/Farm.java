@@ -78,7 +78,7 @@ public class Farm {
 							this.Funds+= beerenburg.get(xCoord, yCoord).getValue();
 						}
 						
-						if (input.substring(0, 1).equals("f")) { // checks if the user is trying to take bulk action
+						if (input.substring(0, 1).equals("f")) { // checks if the user is trying bulk fertilize
 							System.out.println("Write the number of spots beside and below your coordinate that you want to fertilize (x y)");
 							String coveredArea;
 							coveredArea = command.nextLine();
@@ -98,28 +98,40 @@ public class Farm {
 									coveredArea1[1] = Integer.toString(Integer.MAX_VALUE);
 								}
 								
-								if (Integer.parseInt(coveredArea1[0]) == Integer.MAX_VALUE || Integer.parseInt(coveredArea1[1]) == Integer.MAX_VALUE || 
-									Integer.parseInt(coveredArea1[0]) <= 0 || Integer.parseInt(coveredArea1[1]) <= 0) {
-									if (xCoord >= fieldWidth || yCoord >= fieldHeight || xCoord < 0 || yCoord < 0) { //makes sure that neither of the inputs are greater than the bounds of the field
-									System.out.println("invalid1");
-									}
+								
+								if (Integer.parseInt(coveredArea1[0]) + xCoord > fieldWidth-1 || Integer.parseInt(coveredArea1[0]) + xCoord > fieldWidth-1) {
+									System.out.println("invalid");
 								}
 								
-								else if (xCoord + Integer.parseInt(coveredArea1[0]) > fieldWidth || yCoord + Integer.parseInt(coveredArea1[1]) > fieldHeight ||
-									xCoord + Integer.parseInt(coveredArea1[0]) < 0 || yCoord + Integer.parseInt(coveredArea1[1]) < 0) {
-									System.out.println("invalid2");
+								else if (Integer.parseInt(coveredArea1[0]) < 0 || Integer.parseInt(coveredArea1[0]) < 0 ) {
+									System.out.println("invalid");
+								}
+								
+								else if (Integer.parseInt(coveredArea1[0]) == 0  && Integer.parseInt(coveredArea1[1]) == 0) {
+									beerenburg.fertilize(xCoord, yCoord);
+								}
+								
+								else if (Integer.parseInt(coveredArea1[0]) == 0  && Integer.parseInt(coveredArea1[0]) != 0) {
+									for (int y = 0; yCoord + y <= yCoord + Integer.parseInt(coveredArea1[1]); )
+										beerenburg.fertilize(xCoord, yCoord-y);
+								}
+								
+								else if (Integer.parseInt(coveredArea1[0]) != 0  && Integer.parseInt(coveredArea1[0]) == 0) {
+									for (int x = 0; xCoord + x <= xCoord + Integer.parseInt(coveredArea1[1]); ) {
+										beerenburg.fertilize(xCoord-x, yCoord);
+										
+									}
 								}
 								
 								else {
 									int x = xCoord;
 									for(; xCoord <= x + Integer.parseInt(coveredArea1[0]) ;xCoord++) {
 										int y = yCoord;
-										int yCoordClone = yCoord;
 										for(int addition = 0; yCoord <= y + Integer.parseInt(coveredArea1[1]) ;yCoord++) {
 											System.out.println(xCoord+"+"+yCoord);
 											beerenburg.fertilize(xCoord, yCoord);
 										}
-										yCoord = yCoordClone;
+										yCoord = y;
 									}		
 								}
 							}
