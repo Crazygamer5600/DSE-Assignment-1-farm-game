@@ -79,11 +79,10 @@ public class Farm {
 						}
 						
 						if (input.substring(0, 1).equals("f")) { // checks if the user is trying to take bulk action
-							System.out.println("Write t,p,b,h to denote your action:\nEnter the area besides your previously marked coordinate where you want bulk action taken");
+							System.out.println("Write the number of spots beside and below your coordinate that you want to fertilize (x y)");
 							String coveredArea;
 							coveredArea = command.nextLine();
-							String operand = coveredArea.substring(1,2);
-							String[] coveredArea1 = coveredArea.split(coveredArea);
+							String[] coveredArea1 = coveredArea.split(" ");
 							if (coveredArea1.length != 2) { //ensures there are only two coordinates
 								System.out.println("invalid");
 							}
@@ -102,20 +101,25 @@ public class Farm {
 								if (Integer.parseInt(coveredArea1[0]) == Integer.MAX_VALUE || Integer.parseInt(coveredArea1[1]) == Integer.MAX_VALUE || 
 									Integer.parseInt(coveredArea1[0]) <= 0 || Integer.parseInt(coveredArea1[1]) <= 0) {
 									if (xCoord >= fieldWidth || yCoord >= fieldHeight || xCoord < 0 || yCoord < 0) { //makes sure that neither of the inputs are greater than the bounds of the field
-									System.out.println("invalid");
+									System.out.println("invalid1");
 									}
 								}
 								
 								else if (xCoord + Integer.parseInt(coveredArea1[0]) > fieldWidth || yCoord + Integer.parseInt(coveredArea1[1]) > fieldHeight ||
 									xCoord + Integer.parseInt(coveredArea1[0]) < 0 || yCoord + Integer.parseInt(coveredArea1[1]) < 0) {
-									System.out.println("invalid");
+									System.out.println("invalid2");
 								}
 								
 								else {
-									for(int x = xCoord; x <= xCoord + Integer.parseInt(coveredArea1[0]) ;x++) {
-										for(int y = yCoord; y <= yCoord + Integer.parseInt(coveredArea1[1]) ;y++) {
-										
+									int x = xCoord;
+									for(; xCoord <= x + Integer.parseInt(coveredArea1[0]) ;xCoord++) {
+										int y = yCoord;
+										int yCoordClone = yCoord;
+										for(int addition = 0; yCoord <= y + Integer.parseInt(coveredArea1[1]) ;yCoord++) {
+											System.out.println(xCoord+"+"+yCoord);
+											beerenburg.fertilize(xCoord, yCoord);
 										}
+										yCoord = yCoordClone;
 									}		
 								}
 							}

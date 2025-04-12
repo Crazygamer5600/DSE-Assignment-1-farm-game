@@ -43,16 +43,6 @@ public abstract class Item {
 			return 0;
 		}
 	}
-	
-	
-	public String getSymbol() {
-		if (age > maturationAge) {
-			return symbol.toUpperCase();
-		}
-		else {
-			return symbol;
-		}
-	}
 
 	public boolean equals(Item x, Item y) {
 		if (x.age == y.age && x.deathAge == y.deathAge && x.maturationAge == y.maturationAge && x.monetaryValue == y.monetaryValue) {
@@ -61,6 +51,25 @@ public abstract class Item {
 		else {
 			return false;
 		}
+	}
+	
+	public int getAge() {
+		return age;
+	}
+	public int getMaturationAge() {
+		return maturationAge;
+	}
+	
+	public int getDeathAge() {
+		return deathAge;
+	}
+	
+	public int getMonetaryValue() {
+		return monetaryValue;
+	}
+	
+	public String getSymbol() {
+		return symbol;
 	}
 
 	@Override

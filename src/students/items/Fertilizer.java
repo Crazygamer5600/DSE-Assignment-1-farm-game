@@ -4,7 +4,7 @@ public class Fertilizer extends Item {
 	static int subclassCount;
 	static int Price = 5;
 	
-	public Fertilizer(Food x) {
+	public Fertilizer(Item x) {
 		super(x.getAge(), x.getMaturationAge(), x.getDeathAge()+5, x.getMonetaryValue()*2, "f");
 		x.reduceGenerationCount();
 		subclassCount++;

@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Random;
 import students.items.Item;
 import students.items.Apples;
+import students.items.Fertilizer;
 import students.items.Grain;
 
 public class Field {
@@ -74,6 +75,15 @@ public class Field {
 	public void till(int xCoord, int yCoord) {
 		fieldItems[yCoord][xCoord].reduceGenerationCount();
 		fieldItems[yCoord][xCoord] = new Soil();
+	}
+	
+	public void fertilize(int xCoord, int yCoord) {
+		if (fieldItems[yCoord][xCoord].getSymbol() == "a" || fieldItems[yCoord][xCoord].getSymbol() == "A" 
+			|| fieldItems[yCoord][xCoord].getSymbol() == "g" || fieldItems[yCoord][xCoord].getSymbol() == "G"){
+			Fertilizer boneMeal = new Fertilizer(fieldItems[yCoord][xCoord]);
+			fieldItems[yCoord][xCoord].reduceGenerationCount();
+			fieldItems[yCoord][xCoord] = boneMeal;
+		}
 	}
 
 	public Item get(int xCoord, int yCoord) {
