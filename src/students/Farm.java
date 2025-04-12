@@ -106,7 +106,7 @@ public class Farm {
 									System.out.println("invalid");
 								}
 								
-								else if (Integer.parseInt(coveredArea1[0]) < 0 || Integer.parseInt(coveredArea1[0]) < 0 ) {
+								else if (Integer.parseInt(coveredArea1[0]) < 0 || Integer.parseInt(coveredArea1[1]) < 0 ) {
 									System.out.println("invalid");
 								}
 								
