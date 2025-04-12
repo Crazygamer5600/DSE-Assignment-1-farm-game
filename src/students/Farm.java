@@ -145,19 +145,18 @@ public class Farm {
 								
 								else {
 									int x = xCoord;
-									for(; xCoord <= x + Integer.parseInt(coveredArea1[0]) ;xCoord++) {
+									for(; xCoord <= x + Integer.parseInt(coveredArea1[0]) ;xCoord++) {// fertilizes squares and rectangles
 										int y = yCoord;
-										if (this.funds<=0) {
+										if (this.funds<=0) {// breaks out of initial loop if you have no money
 											System.out.println("insufficient funds");
 											break;
 										}
 									
 										for(; yCoord <= y + Integer.parseInt(coveredArea1[1]) ;yCoord++) {
-											System.out.println(xCoord+"+"+yCoord);
-											beerenburg.fertilize(xCoord, yCoord);
-											this.funds -= Fertilizer.getPrice();
+											beerenburg.fertilize(xCoord, yCoord); //fertilizes each item within the square parameter
+											this.funds -= Fertilizer.getPrice(); // deducts a cash quantity per fertilization
 											if (this.funds<=0) {
-												break;
+												break;// breaks out of second loop if you have no money
 											}
 										}
 										yCoord = y;
@@ -171,7 +170,7 @@ public class Farm {
 							System.out.println("Enter:\r\n" + " - 'a' to buy an apple for $\r\n" + " - 'g' to buy grain for\r\n");
 							String seedToPurchase;
 							seedToPurchase = command.nextLine();
-							if (!seedToPurchase.equals("a") && !seedToPurchase.equals("g")) { //makes sure that the user is choosing one of the two options of an apple or a grain
+							if (!seedToPurchase.equals("a") && !seedToPurchase.equals("g")) { //makes sure that the user is choosing one of the two options of apple or grain
 								System.out.println("invalid input");
 							}
 								
@@ -180,7 +179,7 @@ public class Farm {
 									System.out.println("insufficient funds");
 								}
 									
-								else { // condition to follow if user can afford seeds
+								else { 
 									this.funds -= Apples.getSeedPrice(); // deducts from funds the seed price
 									Apples apple = new Apples(); // instantiates an apple object to plant
 									beerenburg.plant(xCoord, yCoord, apple); // plants the object at the specific coordinate
@@ -192,7 +191,7 @@ public class Farm {
 									System.out.println("insufficient funds");
 								}
 									
-								else { // condition to follow if user can afford seeds
+								else {
 									this.funds -= Grain.getSeedPrice(); // deducts from funds the seed price
 									Grain wheat = new Grain(); // instantiates a grain object to plant
 									beerenburg.plant(xCoord, yCoord, wheat); // plants the object at the specific coordinate
