@@ -31,23 +31,16 @@ public abstract class Item {
 		if(age > deathAge) {
 			dead = true;
 		}
-		
 		return dead;
 	}
 
 	public int getValue() {
-		if (this.toString().equals("A") || this.toString().equals("a") || this.toString().equals("g") || this.toString().equals("G")) {
-			if (age > maturationAge) {
-				return monetaryValue;
-			}
-			else {
-				return 0;
-			}
+		if (this.toString().equals("A") || this.toString().equals("G")) {
+			return monetaryValue;
 		}
-		
 		else {
 			return 0;
-		}
+		}	
 	}
 
 	public boolean equals(Item x) {
