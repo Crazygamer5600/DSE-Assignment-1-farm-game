@@ -2,18 +2,19 @@ package students;
 import java.util.Scanner;
 
 import students.items.Apples;
+import students.items.Fertilizer;
 import students.items.Grain;
 
 
 public class Farm {
 	int fieldWidth;
 	int fieldHeight;
-	int Funds;
+	int funds;
 	
 	public Farm(int fieldWidth, int fieldHeight, int Funds) {
 		this.fieldWidth = fieldWidth;
 		this.fieldHeight = fieldHeight;
-		this.Funds = Funds;
+		this.funds = funds;
 	}
 	
 	public void run() {
@@ -22,7 +23,7 @@ public class Farm {
 		Field beerenburg = new Field(fieldHeight, fieldWidth);
 		
 		while(!input.equals("q")) {
-			System.out.println(beerenburg.toString() + "\n" + "Bank balance: $" + this.Funds + "\n\nEnter your next action:\r\n" 
+			System.out.println(beerenburg.toString() + "\n" + "Bank balance: $" + this.funds + "\n\nEnter your next action:\r\n" 
 			+ "  t x y: till\r\n" + "  h x y: harvest\r\n"	+ "  p x y: plant\r\n" + "  s: field summary\r\n" + "  w: wait\r\n"
 			+ "  f x y: fertilize in bulk \r\n" + "  q: quit\r\n");
 			
@@ -75,7 +76,7 @@ public class Farm {
 						}
 							
 						if (input.substring(0, 1).equals("h")) { // checks if the user is trying to harvest
-							this.Funds+= beerenburg.get(xCoord, yCoord).getValue();
+							this.funds+= beerenburg.get(xCoord, yCoord).getValue();
 						}
 						
 						if (input.substring(0, 1).equals("f")) { // checks if the user is trying bulk fertilize
@@ -108,18 +109,40 @@ public class Farm {
 								}
 								
 								else if (Integer.parseInt(coveredArea1[0]) == 0  && Integer.parseInt(coveredArea1[1]) == 0) {
+									if (this.funds<=0) {
+										System.out.println("insufficient funds");
+										break;
+									}
+									else {
+										this.funds -= Fertilizer.getPrice();
+									}
 									beerenburg.fertilize(xCoord, yCoord);
 								}
 								
 								else if (Integer.parseInt(coveredArea1[0]) == 0  && Integer.parseInt(coveredArea1[0]) != 0) {
-									for (int y = 0; yCoord + y <= yCoord + Integer.parseInt(coveredArea1[1]); )
+									for (int y = 0; yCoord + y <= yCoord + Integer.parseInt(coveredArea1[1]);) {
+										if (this.funds<=0) {
+											System.out.println("insufficient funds");
+											break;
+										}
+										else {
+											this.funds -= Fertilizer.getPrice();
+										}
 										beerenburg.fertilize(xCoord, yCoord-y);
-								}
+										}
+									}
+								
 								
 								else if (Integer.parseInt(coveredArea1[0]) != 0  && Integer.parseInt(coveredArea1[0]) == 0) {
 									for (int x = 0; xCoord + x <= xCoord + Integer.parseInt(coveredArea1[1]); ) {
+										if (this.funds<=0) {
+											System.out.println("insufficient funds");
+											break;
+										}
+										else {
+											this.funds -= Fertilizer.getPrice();
+										}
 										beerenburg.fertilize(xCoord-x, yCoord);
-										
 									}
 								}
 								
@@ -128,6 +151,13 @@ public class Farm {
 									for(; xCoord <= x + Integer.parseInt(coveredArea1[0]) ;xCoord++) {
 										int y = yCoord;
 										for(int addition = 0; yCoord <= y + Integer.parseInt(coveredArea1[1]) ;yCoord++) {
+											if (this.funds<=0) {
+												System.out.println("insufficient funds");
+												break;
+											}
+											else {
+												this.funds -= Fertilizer.getPrice();
+											}
 											System.out.println(xCoord+"+"+yCoord);
 											beerenburg.fertilize(xCoord, yCoord);
 										}
@@ -147,24 +177,24 @@ public class Farm {
 							}
 								
 							if (seedToPurchase.equals("a")) { // code to execute if apple is chosen
-								if (Apples.getSeedPrice() > this.Funds) { // makes sure that user can afford an apple seed
+								if (Apples.getSeedPrice() > this.funds) { // makes sure that user can afford an apple seed
 									System.out.println("insufficient funds");
 								}
 									
 								else { // condition to follow if user can afford seeds
-									this.Funds -= Apples.getSeedPrice(); // deducts from funds the seed price
+									this.funds -= Apples.getSeedPrice(); // deducts from funds the seed price
 									Apples apple = new Apples(); // instantiates an apple object to plant
 									beerenburg.plant(xCoord, yCoord, apple); // plants the object at the specific coordinate
 								}
 							}
 								
 							if (seedToPurchase.equals("g")) { // code to execute if grain is chosen
-								if (Grain.getSeedPrice() > this.Funds) { // makes sure that user can afford a grain seed
+								if (Grain.getSeedPrice() > this.funds) { // makes sure that user can afford a grain seed
 									System.out.println("insufficient funds");
 								}
 									
 								else { // condition to follow if user can afford seeds
-									this.Funds -= Grain.getSeedPrice(); // deducts from funds the seed price
+									this.funds -= Grain.getSeedPrice(); // deducts from funds the seed price
 									Grain wheat = new Grain(); // instantiates a grain object to plant
 									beerenburg.plant(xCoord, yCoord, wheat); // plants the object at the specific coordinate
 								}
