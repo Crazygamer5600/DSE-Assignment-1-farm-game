@@ -1,5 +1,6 @@
 package students;
 import students.items.Apples;
+import students.items.Fertilizer;
 import students.items.Grain;
 
 public class Main {
@@ -7,6 +8,12 @@ public class Main {
 	public static void main(String[] args) {
 //		Field r = new Field(10,10);
 //		Apples GrannySmith = new Apples();
+//		Fertilizer boneMeal = new Fertilizer(GrannySmith);
+//		boneMeal.tick();
+//		boneMeal.tick();
+//		boneMeal.tick();
+//		boneMeal.tick();
+//		System.out.println(boneMeal);
 //		r.prepField();
 //		r.tick();
 //		System.out.println(r.toString());

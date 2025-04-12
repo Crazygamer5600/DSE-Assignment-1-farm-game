@@ -23,8 +23,8 @@ public class Farm {
 		
 		while(!input.equals("q")) {
 			System.out.println(beerenburg.toString() + "\n" + "Bank balance: $" + this.Funds + "\n\nEnter your next action:\r\n" 
-			+ "  t x y: till\r\n" + "  h x y: harvest\r\n"	+ "  p x y: plant\r\n" + "  s: field summary\r\n" + "  w: wait\r\n" 
-			+ "  q: quit\r\n");
+			+ "  t x y: till\r\n" + "  h x y: harvest\r\n"	+ "  p x y: plant\r\n" + "  s: field summary\r\n" + "  w: wait\r\n"
+			+ "  f x y: fertilize in bulk \r\n" + "  q: quit\r\n");
 			
 			input = command.nextLine();
 			
@@ -40,7 +40,7 @@ public class Farm {
 			}
 			
 			else if (input.length() > 1) { 
-				if(!input.substring(0,2).equals("t ") && !input.substring(0,2).equals("h ") && !input.substring(0,2).equals("p ")) { //ensures that multi-character inputs  begin with "t ","p " or "h "
+				if(!input.substring(0,2).equals("t ") && !input.substring(0,2).equals("h ") && !input.substring(0,2).equals("p ") && !input.substring(0,2).equals("f ")) { //ensures that multi-character inputs  begin with "t ","p ","b " or "h "
 					System.out.println("invalid input");
 				}
 				
@@ -53,7 +53,7 @@ public class Farm {
 				
 				else if (coords1.length == 2) {
 					try {
-						int xCoord = Integer.parseInt(coords1[0]); // attempts to convert the string coordinates into integers but if this fails it prints an invalid input error
+						int xCoord = Integer.parseInt(coords1[0]); // attempts to convert the coordinates into integers but if this fails it assigns invalid numbers to a variable which will make the program know it is invalid. 
 						int yCoord = Integer.parseInt(coords1[1]);
 						coords1[0] = Integer.toString(xCoord); //assigns the variables to coords1 element 0 and 1
 						coords1[1] = Integer.toString(yCoord);
@@ -68,6 +68,7 @@ public class Farm {
 					if (xCoord >= fieldWidth || yCoord >= fieldHeight || xCoord < 0 || yCoord < 0) { //makes sure that neither of the inputs are greater than the bounds of the field
 						System.out.println("invalid");
 					}
+					
 					else {
 						if (input.substring(0, 1).equals("t")) { // checks if the user is trying to till
 							beerenburg.till(xCoord, yCoord);
@@ -76,6 +77,50 @@ public class Farm {
 						if (input.substring(0, 1).equals("h")) { // checks if the user is trying to harvest
 							this.Funds+= beerenburg.get(xCoord, yCoord).getValue();
 						}
+						
+						if (input.substring(0, 1).equals("f")) { // checks if the user is trying to take bulk action
+							System.out.println("Write t,p,b,h to denote your action:\nEnter the area besides your previously marked coordinate where you want bulk action taken");
+							String coveredArea;
+							coveredArea = command.nextLine();
+							String operand = coveredArea.substring(1,2);
+							String[] coveredArea1 = coveredArea.split(coveredArea);
+							if (coveredArea1.length != 2) { //ensures there are only two coordinates
+								System.out.println("invalid");
+							}
+							
+							else if (coveredArea1.length == 2) {
+								try {
+									int horizonRange = Integer.parseInt(coveredArea1[0]); // attempts to convert the range into integers but if this fails it assigns a value which the program will know is wrong
+									int verticalRange = Integer.parseInt(coveredArea1[1]);
+									coveredArea1[0] = Integer.toString(horizonRange); //assigns the variables to coords1 element 0 and 1
+									coveredArea1[1] = Integer.toString(verticalRange);
+								}catch(Exception f) {
+									coveredArea1[0] = Integer.toString(Integer.MAX_VALUE); //if an error occurs then range is maxxed to denote that input is invalid;
+									coveredArea1[1] = Integer.toString(Integer.MAX_VALUE);
+								}
+								
+								if (Integer.parseInt(coveredArea1[0]) == Integer.MAX_VALUE || Integer.parseInt(coveredArea1[1]) == Integer.MAX_VALUE || 
+									Integer.parseInt(coveredArea1[0]) <= 0 || Integer.parseInt(coveredArea1[1]) <= 0) {
+									if (xCoord >= fieldWidth || yCoord >= fieldHeight || xCoord < 0 || yCoord < 0) { //makes sure that neither of the inputs are greater than the bounds of the field
+									System.out.println("invalid");
+									}
+								}
+								
+								else if (xCoord + Integer.parseInt(coveredArea1[0]) > fieldWidth || yCoord + Integer.parseInt(coveredArea1[1]) > fieldHeight ||
+									xCoord + Integer.parseInt(coveredArea1[0]) < 0 || yCoord + Integer.parseInt(coveredArea1[1]) < 0) {
+									System.out.println("invalid");
+								}
+								
+								else {
+									for(int x = xCoord; x <= xCoord + Integer.parseInt(coveredArea1[0]) ;x++) {
+										for(int y = yCoord; y <= yCoord + Integer.parseInt(coveredArea1[1]) ;y++) {
+										
+										}
+									}		
+								}
+							}
+						}
+					
 							
 						if (input.substring(0, 1).equals("p")) { // checks if the user is trying to plant
 							System.out.println("Enter:\r\n" + " - 'a' to buy an apple for $\r\n" + " - 'g' to buy grain for\r\n");
@@ -116,4 +161,5 @@ public class Farm {
 		}
 	}				
 }
+
 

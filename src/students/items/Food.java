@@ -8,7 +8,7 @@ public abstract class Food extends Item {
 		return age;
 	}
 	public int getMaturationAge() {
-		return age;
+		return maturationAge;
 	}
 	
 	public int getDeathAge() {
