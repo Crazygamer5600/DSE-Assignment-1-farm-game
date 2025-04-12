@@ -33,7 +33,7 @@ public class Field {
 				fieldItems[currentRow][currentColumn].tick();
 				Random ran = new Random();
 				int x = ran.nextInt(5) + 1;
-				if (fieldItems[currentRow][currentColumn].getSymbol() == "." && x == 1) {
+				if (fieldItems[currentRow][currentColumn].toString() == "." && x == 1) {
 					fieldItems[currentRow][currentColumn].reduceGenerationCount();
 					fieldItems[currentRow][currentColumn] = new Weed();
 				}

@@ -46,6 +46,7 @@ public class Marker {
 		testField.till(0, 0);
 		System.out.println(a.equals(testField.get(0, 0))); //should print false
 		System.out.println(testField.get(0, 0).equals(new Soil())); //should print true
+		
 
 
 		// Section THREE

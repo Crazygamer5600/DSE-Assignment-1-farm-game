@@ -44,8 +44,8 @@ public abstract class Item {
 		}
 	}
 
-	public boolean equals(Item x, Item y) {
-		if (x.age == y.age && x.deathAge == y.deathAge && x.maturationAge == y.maturationAge && x.monetaryValue == y.monetaryValue) {
+	public boolean equals(Item x) {
+		if (x.age == this.age && x.deathAge == this.deathAge && x.maturationAge == this.maturationAge && x.monetaryValue == this.monetaryValue) {
 			return true;
 		}
 		else {
@@ -68,14 +68,10 @@ public abstract class Item {
 		return monetaryValue;
 	}
 	
-	public String getSymbol() {
-		return symbol;
-	}
 
 	@Override
 	public String toString() {
-		return "Item [age=" + age + ", maturationAge=" + maturationAge + ", deathAge=" + deathAge + ", monetaryValue="
-				+ monetaryValue + "]";
+		return symbol;
 	}
 	
 	
