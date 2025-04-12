@@ -12,15 +12,15 @@ import students.items.Grain;
 public class Field {
 	int height;
 	int width;
-	Item[][] fieldItems;//2d array similar to excel table
+	Item[][] fieldItems;
 	
-	public Field(int height, int width) {
+	public Field(int width, int height) {
 		this.height = height;
 		this.width = width;
 		this.fieldItems = new Item[width][height];
 		
-		for (int currentRow = 0; currentRow < height; currentRow++) {
-			for (int rowElement = 0; rowElement < width; rowElement++) {
+		for (int currentRow = 0; currentRow < width; currentRow++) {
+			for (int rowElement = 0; rowElement < height; rowElement++) {
 				fieldItems[currentRow][rowElement] = new Soil();
 			}
 		}	
@@ -28,18 +28,18 @@ public class Field {
 
 
 	public void tick() {
-		for (int currentRow = 0; currentRow < height; currentRow++) {
-			for (int rowElement = 0; rowElement < width; rowElement++) {
-				fieldItems[currentRow][rowElement].tick();
+		for (int currentColumn = 0; currentColumn < height; currentColumn++) {
+			for (int currentRow = 0; currentRow < width; currentRow++) {
+				fieldItems[currentRow][currentColumn].tick();
 				Random ran = new Random();
 				int x = ran.nextInt(5) + 1;
-				if (fieldItems[currentRow][rowElement].getSymbol() == "." && x == 1) {
-					fieldItems[currentRow][rowElement].reduceGenerationCount();
-					fieldItems[currentRow][rowElement] = new Weed();
+				if (fieldItems[currentRow][currentColumn].getSymbol() == "." && x == 1) {
+					fieldItems[currentRow][currentColumn].reduceGenerationCount();
+					fieldItems[currentRow][currentColumn] = new Weed();
 				}
-				if (fieldItems[currentRow][rowElement].died() == true) {
-					fieldItems[currentRow][rowElement].reduceGenerationCount();
-					fieldItems[currentRow][rowElement] = new UntilledSoil();
+				if (fieldItems[currentRow][currentColumn].died() == true) {
+					fieldItems[currentRow][currentColumn].reduceGenerationCount();
+					fieldItems[currentRow][currentColumn] = new UntilledSoil();
 				}
 			}
 		}
@@ -63,7 +63,7 @@ public class Field {
 			}
 			
 			for (int rowElement = 0; rowElement < width; rowElement++) {
-				fieldView += fieldItems[currentRow][rowElement] + " ";
+				fieldView += fieldItems[rowElement][currentRow] + " ";
 			}
 			fieldView += "\n";
 		}
@@ -73,23 +73,23 @@ public class Field {
 	
 	
 	public void till(int xCoord, int yCoord) {
-		fieldItems[yCoord][xCoord].reduceGenerationCount();
-		fieldItems[yCoord][xCoord] = new Soil();
+		fieldItems[xCoord][yCoord].reduceGenerationCount();
+		fieldItems[xCoord][yCoord] = new Soil();
 	}
 	
 	public void fertilize(int xCoord, int yCoord) {
-			fieldItems[yCoord][xCoord].reduceGenerationCount();
-			Fertilizer troforte = new Fertilizer(fieldItems[yCoord][xCoord]);
-			fieldItems[yCoord][xCoord] = troforte;
+			fieldItems[xCoord][yCoord].reduceGenerationCount();
+			Fertilizer troforte = new Fertilizer(fieldItems[xCoord][yCoord]);
+			fieldItems[xCoord][yCoord] = troforte;
 	}
 
 	public Item get(int xCoord, int yCoord) {
-		return fieldItems[yCoord][xCoord];
+		return fieldItems[xCoord][yCoord];
 	}
 	
 	public void plant(int xCoord, int yCoord, Item plant) {
-		fieldItems[yCoord][xCoord].reduceGenerationCount();
-		fieldItems[yCoord][xCoord] = plant;
+		fieldItems[xCoord][yCoord].reduceGenerationCount();
+		fieldItems[xCoord][yCoord] = plant;
 	}
 	
 	public int getValue() {

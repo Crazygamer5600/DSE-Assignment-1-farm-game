@@ -20,7 +20,7 @@ public class Farm {
 	public void run() {
 		String input = "";
 		Scanner command = new Scanner(System.in);
-		Field beerenburg = new Field(fieldHeight, fieldWidth);
+		Field beerenburg = new Field(fieldWidth, fieldHeight);
 		
 		while(!input.equals("q")) {
 			System.out.println(beerenburg.toString() + "\n" + "Bank balance: $" + this.funds + "\n\nEnter your next action:\r\n" 
