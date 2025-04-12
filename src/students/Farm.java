@@ -20,7 +20,7 @@ public class Farm {
 	public void run() {
 		String input = "";
 		Scanner command = new Scanner(System.in);
-		Field beerenburg = new Field(fieldHeight, fieldWidth);
+		Field beerenburg = new Field(fieldWidth, fieldHeight);
 		
 		while(!input.equals("q")) {
 			System.out.println(beerenburg.toString() + "\n" + "Bank balance: $" + this.funds + "\n\nEnter your next action:\r\n" 
@@ -77,7 +77,7 @@ public class Farm {
 							
 						if (input.substring(0, 1).equals("h")) { // checks if the user is trying to harvest
 							this.funds+= beerenburg.get(xCoord, yCoord).getValue();
-							System.out.println("Sold " + beerenburg.get(xCoord, yCoord) + " for " + beerenburg.get(xCoord, yCoord).getValue());
+							System.out.println("Sold '" + beerenburg.get(xCoord, yCoord) + "' for " + beerenburg.get(xCoord, yCoord).getValue());
 							beerenburg.till(xCoord, yCoord);
 						}
 						
@@ -106,7 +106,7 @@ public class Farm {
 									System.out.println("invalid");
 								}
 								
-								else if (Integer.parseInt(coveredArea1[0]) < 0 || Integer.parseInt(coveredArea1[0]) < 0 ) {
+								else if (Integer.parseInt(coveredArea1[0]) < 0 || Integer.parseInt(coveredArea1[1]) < 0 ) {
 									System.out.println("invalid");
 								}
 								

@@ -31,8 +31,9 @@ public class Main {
 //		System.out.println(r.getSummary());
 //		System.out.println(Apples.getGenerationCount());
 //		System.out.println(new Fertilizer(GrannySmith));
-		Farm beerenburg = new Farm(10,10,28);
+		Farm beerenburg = new Farm(10,7,28);
 		beerenburg.run();
+		
 		
 		
 		
