@@ -11,7 +11,7 @@ public class Farm {
 	int fieldHeight;
 	int funds;
 	
-	public Farm(int fieldWidth, int fieldHeight, int Funds) {
+	public Farm(int fieldWidth, int fieldHeight, int funds) {
 		this.fieldWidth = fieldWidth;
 		this.fieldHeight = fieldHeight;
 		this.funds = funds;
@@ -77,6 +77,8 @@ public class Farm {
 							
 						if (input.substring(0, 1).equals("h")) { // checks if the user is trying to harvest
 							this.funds+= beerenburg.get(xCoord, yCoord).getValue();
+							System.out.println("Sold " + beerenburg.get(xCoord, yCoord) + " for " + beerenburg.get(xCoord, yCoord).getValue());
+							beerenburg.till(xCoord, yCoord);
 						}
 						
 						if (input.substring(0, 1).equals("f")) { // checks if the user is trying bulk fertilize
@@ -150,16 +152,18 @@ public class Farm {
 									int x = xCoord;
 									for(; xCoord <= x + Integer.parseInt(coveredArea1[0]) ;xCoord++) {
 										int y = yCoord;
+										if (this.funds<=0) {
+											System.out.println("insufficient funds");
+											break;
+										}
+									
 										for(int addition = 0; yCoord <= y + Integer.parseInt(coveredArea1[1]) ;yCoord++) {
-											if (this.funds<=0) {
-												System.out.println("insufficient funds");
-												break;
-											}
-											else {
-												this.funds -= Fertilizer.getPrice();
-											}
 											System.out.println(xCoord+"+"+yCoord);
 											beerenburg.fertilize(xCoord, yCoord);
+											this.funds -= Fertilizer.getPrice();
+											if (this.funds<=0) {
+												break;
+											}
 										}
 										yCoord = y;
 									}		

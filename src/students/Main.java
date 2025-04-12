@@ -7,7 +7,7 @@ public class Main {
 
 	public static void main(String[] args) {
 //		Field r = new Field(10,10);
-//		Apples GrannySmith = new Apples();
+		Apples GrannySmith = new Apples();
 //		Fertilizer boneMeal = new Fertilizer(GrannySmith);
 //		boneMeal.tick();
 //		boneMeal.tick();
@@ -30,7 +30,8 @@ public class Main {
 //		System.out.println(r.toString());
 //		System.out.println(r.getSummary());
 //		System.out.println(Apples.getGenerationCount());
-		Farm beerenburg = new Farm(10,10,1000000);
+//		System.out.println(new Fertilizer(GrannySmith));
+		Farm beerenburg = new Farm(10,10,28);
 		beerenburg.run();
 		
 		

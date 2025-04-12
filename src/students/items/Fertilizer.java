@@ -5,8 +5,7 @@ public class Fertilizer extends Item {
 	static int Price = 5;
 	
 	public Fertilizer(Item x) {
-		super(x.getAge(), x.getMaturationAge(), x.getDeathAge()+5, x.getMonetaryValue()*2, "f");
-		x.reduceGenerationCount();
+		super(x.getAge(), x.getMaturationAge(), x.getDeathAge(), x.getMonetaryValue()*2, "f");
 		subclassCount++;
 	}
 	
@@ -28,7 +27,7 @@ public class Fertilizer extends Item {
 		if(age > maturationAge) {
 			this.symbol = "F";
 		}
-		return symbol;
+		return this.symbol;
 	}
 	
 	
