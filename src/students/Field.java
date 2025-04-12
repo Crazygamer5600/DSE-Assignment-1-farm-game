@@ -20,8 +20,8 @@ public class Field {
 		this.fieldItems = new Item[width][height];
 		
 		for (int currentRow = 0; currentRow < width; currentRow++) {
-			for (int rowElement = 0; rowElement < height; rowElement++) {
-				fieldItems[currentRow][rowElement] = new Soil();
+			for (int currentColumn = 0; currentColumn < height; currentColumn++) {
+				fieldItems[currentRow][currentColumn] = new Soil();
 			}
 		}	
 	}
@@ -62,8 +62,8 @@ public class Field {
 				fieldView += Integer.toString(currentRow + 1);
 			}
 			
-			for (int rowElement = 0; rowElement < width; rowElement++) {
-				fieldView += fieldItems[rowElement][currentRow] + " ";
+			for (int currentColumn = 0; currentColumn < width; currentColumn++) {
+				fieldView += fieldItems[currentColumn][currentRow] + " ";
 			}
 			fieldView += "\n";
 		}
@@ -95,8 +95,8 @@ public class Field {
 	public int getValue() {
 		int monetaryValue = 0;
 		for (int currentRow = 0; currentRow < height; currentRow++) {
-			for (int rowElement = 0; rowElement < width; rowElement++) {
-				monetaryValue += fieldItems[currentRow][rowElement].getValue();
+			for (int currentColumn = 0; currentColumn < width; currentColumn++) {
+				monetaryValue += fieldItems[currentRow][currentColumn].getValue();
 			}
 		}
 		return monetaryValue;
