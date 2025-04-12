@@ -63,7 +63,7 @@ public class Field {
 			}
 			
 			for (int rowElement = 0; rowElement < width; rowElement++) {
-				fieldView += fieldItems[currentRow][rowElement].getSymbol() + " ";
+				fieldView += fieldItems[currentRow][rowElement] + " ";
 			}
 			fieldView += "\n";
 		}
@@ -78,9 +78,9 @@ public class Field {
 	}
 	
 	public void fertilize(int xCoord, int yCoord) {
-			Fertilizer boneMeal = new Fertilizer(fieldItems[yCoord][xCoord]);
 			fieldItems[yCoord][xCoord].reduceGenerationCount();
-			fieldItems[yCoord][xCoord] = n
+			Fertilizer troforte = new Fertilizer(fieldItems[yCoord][xCoord]);
+			fieldItems[yCoord][xCoord] = troforte;
 	}
 
 	public Item get(int xCoord, int yCoord) {
