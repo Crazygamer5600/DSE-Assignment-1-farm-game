@@ -20,17 +20,17 @@ public class Farm {
 	public void run() {
 		String input = "";
 		Scanner command = new Scanner(System.in);
-		Field beerenburg = new Field(fieldWidth, fieldHeight);
+		Field beerenburg = new Field(fieldWidth, fieldHeight);// instantiates the field then prepares a 2d array populated solely
 		
-		while(!input.equals("q")) {
+		while(!input.equals("q")) {// begins the game under the pretense that input should never be equal to q and continue in the loop
 			System.out.println(beerenburg.toString() + "\n" + "Bank balance: $" + this.funds + "\n\nEnter your next action:\r\n" 
 			+ "  t x y: till\r\n" + "  h x y: harvest\r\n"	+ "  p x y: plant\r\n" + "  s: field summary\r\n" + "  w: wait\r\n"
 			+ "  f x y: fertilize in bulk \r\n" + "  q: quit\r\n");
 			
 			input = command.nextLine();
 			
-			if (input.length() == 1) { 
-				if(!input.equals("w") && !input.equals("s") && !input.equals("q")) { //ensures that single character inputs = w,s or q
+			if (input.length() == 1) { //if the input has a length of one character
+				if(!input.equals("w") && !input.equals("s") && !input.equals("q")) { //ensures that single character inputs = w,s or q otherwise it will print erro then skip turn
 					System.out.println("invalid input");
 				}
 				
@@ -49,7 +49,7 @@ public class Farm {
 				String[] coords1 = coords.split(" "); //removes spaces from the above coordinate and places each character separated with a space into an array
 				
 				if (coords1.length != 2) { //ensures there are only two coordinates
-					System.out.println("invalid");
+					System.out.println("invalid input");
 				}
 				
 				else if (coords1.length == 2) {
@@ -67,7 +67,7 @@ public class Farm {
 					int xCoord = Integer.parseInt(coords1[0]) - 1;
 					int yCoord = Integer.parseInt(coords1[1]) - 1;
 					if (xCoord >= fieldWidth || yCoord >= fieldHeight || xCoord < 0 || yCoord < 0) { //makes sure that neither of the inputs are greater than the bounds of the field
-						System.out.println("invalid");
+						System.out.println("invalid input");
 					}
 					
 					else {
@@ -87,7 +87,7 @@ public class Farm {
 							coveredArea = command.nextLine();
 							String[] coveredArea1 = coveredArea.split(" ");
 							if (coveredArea1.length != 2) { //ensures there are only two coordinates
-								System.out.println("invalid");
+								System.out.println("invalid input");
 							}
 							
 							else if (coveredArea1.length == 2) {
@@ -103,11 +103,11 @@ public class Farm {
 								
 								
 								if (Integer.parseInt(coveredArea1[0]) + xCoord > fieldWidth-1 || Integer.parseInt(coveredArea1[0]) + xCoord > fieldWidth-1) {
-									System.out.println("invalid");
+									System.out.println("invalid input");
 								}
 								
 								else if (Integer.parseInt(coveredArea1[0]) < 0 || Integer.parseInt(coveredArea1[1]) < 0 ) {
-									System.out.println("invalid");
+									System.out.println("invalid input");
 								}
 								
 								else if (Integer.parseInt(coveredArea1[0]) == 0  && Integer.parseInt(coveredArea1[1]) == 0) {
@@ -157,7 +157,7 @@ public class Farm {
 											break;
 										}
 									
-										for(int addition = 0; yCoord <= y + Integer.parseInt(coveredArea1[1]) ;yCoord++) {
+										for(; yCoord <= y + Integer.parseInt(coveredArea1[1]) ;yCoord++) {
 											System.out.println(xCoord+"+"+yCoord);
 											beerenburg.fertilize(xCoord, yCoord);
 											this.funds -= Fertilizer.getPrice();
@@ -177,7 +177,7 @@ public class Farm {
 							String seedToPurchase;
 							seedToPurchase = command.nextLine();
 							if (!seedToPurchase.equals("a") && !seedToPurchase.equals("g")) { //makes sure that the user is choosing one of the two options of an apple or a grain
-								System.out.println("invalid");
+								System.out.println("invalid input");
 							}
 								
 							if (seedToPurchase.equals("a")) { // code to execute if apple is chosen

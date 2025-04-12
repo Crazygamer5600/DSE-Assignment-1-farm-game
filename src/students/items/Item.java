@@ -36,9 +36,15 @@ public abstract class Item {
 	}
 
 	public int getValue() {
-		if (age > maturationAge) {
-			return monetaryValue;
+		if (this.toString().equals("A") || this.toString().equals("a") || this.toString().equals("g") || this.toString().equals("G")) {
+			if (age > maturationAge) {
+				return monetaryValue;
+			}
+			else {
+				return 0;
+			}
 		}
+		
 		else {
 			return 0;
 		}
