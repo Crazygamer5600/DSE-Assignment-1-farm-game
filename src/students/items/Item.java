@@ -15,7 +15,6 @@ public abstract class Item {
 		this.symbol = symbol;
 	}
 	
-	public abstract void reduceGenerationCount();
 
 	public void tick() {
 		age++;
@@ -35,7 +34,7 @@ public abstract class Item {
 	}
 
 	public int getValue() {
-		if (this.toString().equals("A") || this.toString().equals("G")) {
+		if (this.toString().equals("A") || this.toString().equals("G") || this.toString().equals("F")) {
 			return monetaryValue;
 		}
 		else {

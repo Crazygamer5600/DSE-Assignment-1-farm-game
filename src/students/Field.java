@@ -32,12 +32,10 @@ public class Field {
 				fieldItems[currentRow][currentColumn].tick(); // ages all elements by 1
 				Random ran = new Random();
 				int randomInteger = ran.nextInt(5) + 1; // generates a random integer between 1 and 5
-				if (fieldItems[currentRow][currentColumn].toString() == "." && randomInteger == 1) { // if soil and the randomInteger = 1 which it has a 20 percent chance of doing so
-					fieldItems[currentRow][currentColumn].reduceGenerationCount(); 
+				if (fieldItems[currentRow][currentColumn].toString() == "." && randomInteger == 1) { // if soil and the randomInteger = 1 which it has a 20 percent chance of doing so; 
 					fieldItems[currentRow][currentColumn] = new Weed(); // weed grows 20 percent of the time
 				}
 				if (fieldItems[currentRow][currentColumn].died() == true) { // if a perishable object inheriting from item has died
-					fieldItems[currentRow][currentColumn].reduceGenerationCount();
 					fieldItems[currentRow][currentColumn] = new UntilledSoil(); // plant becomes untilled soil
 				}
 			}
@@ -72,12 +70,10 @@ public class Field {
 	
 	
 	public void till(int xCoord, int yCoord) {
-		fieldItems[xCoord][yCoord].reduceGenerationCount();
 		fieldItems[xCoord][yCoord] = new Soil();
 	}
 	
 	public void fertilize(int xCoord, int yCoord) {
-			fieldItems[xCoord][yCoord].reduceGenerationCount();
 			Fertilizer troforte = new Fertilizer(fieldItems[xCoord][yCoord]);
 			fieldItems[xCoord][yCoord] = troforte; // replaces the item prior with its own fertilized version
 	}
@@ -87,7 +83,6 @@ public class Field {
 	}
 	
 	public void plant(int xCoord, int yCoord, Item plant) {
-		fieldItems[xCoord][yCoord].reduceGenerationCount();
 		fieldItems[xCoord][yCoord] = plant;
 	}
 	
@@ -102,16 +97,40 @@ public class Field {
 	}
 	
 	public String getSummary() {
-		int appleSum = Apples.getGenerationCount(); // each variable with get gen count monitors the quantity of each object currently in the field
-		int grainSum = Grain.getGenerationCount();
-		int soilSum = Soil.getGenerationCount();
-		int untilledSum = UntilledSoil.getGenerationCount();
-		int weedSum = Weed.getGenerationCount();
-		int fertilizedSum = Fertilizer.getGenerationCount();
+		int appleSum = 0; // each variable with get gen count monitors the quantity of each object currently in the field
+		int grainSum = 0;// gen count isn't right for monotoring items on the field.
+		int soilSum = 0;
+		int untilledSum = 0;
+		int weedSum = 0;
+		int fertilizedSum = 0;
+		
+		for (int currentRow = 0; currentRow < width; currentRow++) { //loops through range of the x coordinate in the 2d array
+			for (int currentColumn = 0; currentColumn < height; currentColumn++) { //loops through range of the x coordinate in the 2d array
+				if (fieldItems[currentRow][currentColumn].toString() == "A" || fieldItems[currentRow][currentColumn].toString() == "a") { // series of conditions that count the occurrences of values within the 2d array
+					appleSum++;
+				}
+				else if (fieldItems[currentRow][currentColumn].toString() == "G" || fieldItems[currentRow][currentColumn].toString() == "g") {
+					grainSum++;
+				}
+				else if (fieldItems[currentRow][currentColumn].toString() == ".") {
+					soilSum++;
+				}
+				else if (fieldItems[currentRow][currentColumn].toString() == "/") {
+					untilledSum++;
+				}
+				else if (fieldItems[currentRow][currentColumn].toString() == "#") {
+					weedSum++;
+				}
+				else if (fieldItems[currentRow][currentColumn].toString() == "f" || fieldItems[currentRow][currentColumn].toString() == "F") {
+					fertilizedSum++;
+				}
+			}
+		}
+		
 		
 		String summary = "Apples:" + appleSum + "\n" + "Grain:" + grainSum + "\n" + "Soil:" + soilSum + "\n" + "Untilled:" + untilledSum 
 				+ "\n" + "Weed:" + weedSum + "\n" + "fetilizer:" + fertilizedSum + "\nFor a total of $" + this.getValue() + "\nTotal apples created: "
-				+ Apples.getAppleCount() + "\nTotal grain created: "+ Grain.getGrainCount() + "\n"; // grain count and apple count monitor past instances of apple and grain.
+				+ Apples.getGenerationCount() + "\nTotal grain created: "+ Grain.getGenerationCount() + "\n"; // grain count and apple count monitor past instances of apple and grain.
 		
 		return summary;		
 	}

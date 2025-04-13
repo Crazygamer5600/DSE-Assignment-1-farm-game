@@ -19,14 +19,6 @@ public class Grain extends Food{
 		return seedPrice;
 	}
 	
-	public static int getGrainCount() {
-		return grainCount;
-	}
-	
-	public void reduceGenerationCount() {
-		subclassCount--;	
-	}
-
 	@Override
 	public String toString() {
 		if(age > maturationAge) {
